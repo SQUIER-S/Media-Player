@@ -1,6 +1,7 @@
 package pl.squier.player.view;
 
 import javafx.scene.control.TextArea;
+import pl.squier.player.controller.InnerPlaylistController;
 
 /**
  * Created by SQUIER
@@ -15,6 +16,7 @@ public class InnerPlaylist {
     public InnerPlaylist() {
 
         createInnerPlaylist();
+        new InnerPlaylistController(innerPlaylist);
 
     }
 

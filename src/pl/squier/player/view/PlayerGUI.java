@@ -1,9 +1,12 @@
 package pl.squier.player.view;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * Created by SQUIER
@@ -28,21 +31,54 @@ public class PlayerGUI {
      */
     private VBox vbox = new VBox(4);
 
+    /*
+     * Main window components
+     */
+    private TilePane controlButtons, actionLButtons, actionSButtons;
+    private HBox labels;
+    private TextArea innerPlaylist;
+
     public PlayerGUI(Stage primaryStage) {
 
         initStage(primaryStage);
-        vbox.getChildren().addAll(new ControlButtons().getButtons(),
-                new Labels().getLabelTile(),
-                new InnerPlaylist().getInnerPlaylist());
 
-        /*
-        VBox.setMargin(controlButtons, new Insets(2, 2, 0, 0));
-        VBox.setMargin(labelTile, new Insets(0, 11, 0, 0));
-        VBox.setMargin(playListArea, new Insets(10, 10, 1, 10));
+        initComponents();
 
-        */
+        setMargins();
+
+        addComponents();
+
         initScene();
         PRIMARY_STAGE.setScene(scene);
+    }
+
+    /**
+     * adds components groups to the app's body
+     */
+    private void addComponents() {
+        vbox.getChildren().addAll(controlButtons, labels, innerPlaylist, actionSButtons, actionLButtons);
+    }
+
+    /**
+     * sets margins around each components group
+     */
+    private void setMargins() {
+        VBox.setMargin(controlButtons, new Insets(2, 2, 0, 0));
+        VBox.setMargin(labels, new Insets(0, 11, 0, 0));
+        VBox.setMargin(innerPlaylist, new Insets(10, 10, 1, 10));
+        VBox.setMargin(actionLButtons, new Insets(0, 10, 10, 10));
+    }
+
+    /**
+     * initialize components such as buttons, labels, playlist
+     * and action buttons (play/pause, add media etc..)
+     */
+    private void initComponents() {
+        controlButtons = new ControlButtons().getButtons();
+        labels = new Labels().getLabelTile();
+        innerPlaylist = new InnerPlaylist().getInnerPlaylist();
+        actionLButtons = new ActionButtons().getActionLButtons();
+        actionSButtons = new ActionButtons().getActionSButtons();
     }
 
     /**
@@ -66,6 +102,9 @@ public class PlayerGUI {
         PRIMARY_STAGE.setResizable(false);
     }
 
+    /**
+     * Initialize app's body
+     */
     private void initScene() {
         scene = new Scene(vbox, 450, 260);
         scene.getStylesheets().add("pl/squier/player/res/stylesheets/style.css");
