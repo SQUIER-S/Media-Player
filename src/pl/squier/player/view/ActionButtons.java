@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import pl.squier.player.controller.ActionButtonsViewController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,11 @@ public class ActionButtons {
         createActionButtons();
 
         createSmallButtons();
+
+        new ActionButtonsViewController(previous, play,
+                next, add, shuffle,
+                list, equalizer,
+                clearList, mute, random);
     }
 
     private void createSmallButtons() {
