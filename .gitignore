@@ -1,0 +1,9 @@
+#IntelliJ dirs and files
+.idea/**
+*.iml
+
+#Java class files
+*.class
+
+#other
+out/**
