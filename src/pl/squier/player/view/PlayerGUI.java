@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Created by SQUIER
@@ -74,7 +75,7 @@ public class PlayerGUI {
      * and action buttons (play/pause, add media etc..)
      */
     private void initComponents() {
-        controlButtons = new ControlButtons().getButtons();
+        controlButtons = new ControlButtons(PRIMARY_STAGE).getButtons();
         labels = new Labels().getLabelTile();
         innerPlaylist = new InnerPlaylist().getInnerPlaylist();
         actionLButtons = new ActionButtons().getActionLButtons();
@@ -92,12 +93,11 @@ public class PlayerGUI {
      * Initialize frame
      * sets parameters like style, resizability,
      * scene style and size
-     * @param primaryStage
+     * @param primaryStage  -- App's frame
      */
     private void initStage(Stage primaryStage) {
         PRIMARY_STAGE = primaryStage;
-        //PRIMARY_STAGE.initStyle(StageStyle.TRANSPARENT);
-
+        PRIMARY_STAGE.initStyle(StageStyle.TRANSPARENT);
 
         PRIMARY_STAGE.setResizable(false);
     }

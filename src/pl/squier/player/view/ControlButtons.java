@@ -4,6 +4,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
+import pl.squier.player.controller.ControlButtonsController;
 
 /**
  * Created by SQUIER
@@ -20,11 +22,12 @@ public class ControlButtons {
 
     private TilePane controlButtons;
 
-    public ControlButtons() {
+    public ControlButtons(Stage primaryStage) {
         initControlButtons();
 
-
         addControlButtons();
+
+        new ControlButtonsController(exit, minimize, primaryStage);
     }
 
     private void initControlButtons() {
