@@ -8,7 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import pl.squier.player.controller.ActionButtonsViewController;
+import pl.squier.player.controller.AddButtonController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class ActionButtons {
 
     private TilePane actionSButtons;
 
-    public ActionButtons() {
+    public ActionButtons(Stage primaryStage) {
 
         createActionButtons();
 
@@ -35,6 +37,8 @@ public class ActionButtons {
                 next, add, shuffle,
                 list, equalizer,
                 clearList, mute, random);
+
+        new AddButtonController(add, primaryStage);
     }
 
     private void createSmallButtons() {

@@ -8,6 +8,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pl.squier.player.controller.MovableWindowController;
 
 /**
  * Created by SQUIER
@@ -50,7 +51,17 @@ public class PlayerGUI {
         addComponents();
 
         initScene();
+
+        initMovablePlayer();
+
         PRIMARY_STAGE.setScene(scene);
+    }
+
+    /**
+     * allows to move player on the screen by dragging it with mouse
+     */
+    private void initMovablePlayer() {
+        new MovableWindowController(PRIMARY_STAGE, scene);
     }
 
     /**
@@ -78,8 +89,8 @@ public class PlayerGUI {
         controlButtons = new ControlButtons(PRIMARY_STAGE).getButtons();
         labels = new Labels().getLabelTile();
         innerPlaylist = new InnerPlaylist().getInnerPlaylist();
-        actionLButtons = new ActionButtons().getActionLButtons();
-        actionSButtons = new ActionButtons().getActionSButtons();
+        actionLButtons = new ActionButtons(PRIMARY_STAGE).getActionLButtons();
+        actionSButtons = new ActionButtons(PRIMARY_STAGE).getActionSButtons();
     }
 
     /**

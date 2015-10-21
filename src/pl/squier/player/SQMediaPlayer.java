@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import pl.squier.player.miscellaneous.FileChooser;
 import pl.squier.player.view.PlayerGUI;
 
 /**
@@ -22,6 +23,7 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
     public void start(Stage primaryStage) throws Exception {
         playerGUI = new PlayerGUI(primaryStage);
         playerGUI.showStage();
+
     }
 
     @Override
