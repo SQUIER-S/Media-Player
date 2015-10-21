@@ -1,7 +1,9 @@
 package pl.squier.player.controller;
 
 import javafx.scene.control.TextArea;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import pl.squier.player.model.Playlist;
 
 /**
  * Created by SQUIER
@@ -13,6 +15,7 @@ public class InnerPlaylistController {
 
         setOnDragOver(innerPlaylist);
         setOnDragExit(innerPlaylist);
+        setOnDragDropped(innerPlaylist);
     }
 
     private void setOnDragExit(TextArea innerPlaylist) {
@@ -48,6 +51,23 @@ public class InnerPlaylistController {
 
             }
         });
+    }
+
+    private void setOnDragDropped(TextArea innerPlaylist) {
+
+        innerPlaylist.setOnDragDropped(e -> {
+            Dragboard db = e.getDragboard();
+            boolean success = false;
+
+            if(db.hasFiles()) {
+                success = true;
+                Playlist.addToPlaylist(db.getFiles());
+            }
+
+            e.setDropCompleted(success);
+            e.consume();
+        });
+
     }
 
 }
