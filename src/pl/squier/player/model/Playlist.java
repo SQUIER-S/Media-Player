@@ -1,10 +1,9 @@
 package pl.squier.player.model;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,31 +11,21 @@ import java.util.stream.Collectors;
  * Created by SQUIER
  * on 2015-10-21.
  */
-public class Playlist implements Observable {
+public class Playlist {
 
-    private static List<File> playlist = new ArrayList<>();
+    private static ObservableList<File> observablePlaylist = FXCollections.observableArrayList();
 
     public static void addToPlaylist(List<File> importedFiles) {
 
-        playlist.addAll(importedFiles.stream().collect(Collectors.toList()));
+        observablePlaylist.addAll(importedFiles.stream().collect(Collectors.toList()));
 
     }
 
-    public static List<File> getPlaylist() {
-        return playlist;
+    public static ObservableList<File> getPlaylist() {
+        return observablePlaylist;
     }
 
     public static File getFileByInteger(int index) {
-        return playlist.get(index);
-    }
-
-    @Override
-    public void addListener(InvalidationListener listener) {
-
-    }
-
-    @Override
-    public void removeListener(InvalidationListener listener) {
-
+        return observablePlaylist.get(index);
     }
 }

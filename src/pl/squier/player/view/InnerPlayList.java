@@ -2,6 +2,8 @@ package pl.squier.player.view;
 
 import javafx.scene.control.TextArea;
 import pl.squier.player.controller.InnerPlaylistController;
+import pl.squier.player.controller.InnerPlaylistRefresher;
+import pl.squier.player.model.Playlist;
 
 /**
  * Created by SQUIER
@@ -17,6 +19,7 @@ public class InnerPlaylist {
 
         createInnerPlaylist();
         new InnerPlaylistController(innerPlaylist);
+        new InnerPlaylistRefresher(Playlist.getPlaylist(), innerPlaylist);
 
     }
 
@@ -27,6 +30,7 @@ public class InnerPlaylist {
         innerPlaylist.setPrefWidth(400);
         innerPlaylist.setWrapText(true);
         innerPlaylist.getStyleClass().add("txArea");
+        innerPlaylist.setEditable(false);
     }
 
     public TextArea getInnerPlaylist() {
