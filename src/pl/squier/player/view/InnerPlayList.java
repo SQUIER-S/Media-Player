@@ -2,7 +2,7 @@ package pl.squier.player.view;
 
 import javafx.scene.control.TextArea;
 import pl.squier.player.controller.InnerPlaylistController;
-import pl.squier.player.controller.InnerPlaylistRefresher;
+import pl.squier.player.controller.refreshers.InnerPlaylistRefresher;
 import pl.squier.player.model.Playlist;
 
 /**

@@ -1,4 +1,4 @@
-package pl.squier.player.controller;
+package pl.squier.player.controller.refreshers;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
