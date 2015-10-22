@@ -24,6 +24,7 @@ public class InnerPlaylistRefresher {
             innerPlaylist.setEditable(true);
             innerPlaylist.deletePreviousChar();
             innerPlaylist.setEditable(false);
+
         });
 
     }

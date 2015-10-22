@@ -9,8 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import pl.squier.player.controller.ActionButtonsViewController;
-import pl.squier.player.controller.AddButtonController;
+import pl.squier.player.controller.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,14 +81,17 @@ public class ActionButtons {
         previous = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "previousButton.png"));
         previous.setGraphic(new ImageView(icon));
+        new PrevButtonController(previous);
 
         play = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "playButton.png"));
         play.setGraphic(new ImageView(icon));
+        new PlayButtonController(play);
 
         next = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "nextButton.png"));
         next.setGraphic(new ImageView(icon));
+        new NextButtonController(next);
 
         add = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "addButton.png"));
@@ -149,48 +151,8 @@ public class ActionButtons {
         return actionLButtons;
     }
 
-    public Button getClearList() {
-        return clearList;
-    }
-
-    public Button getEqualizer() {
-        return equalizer;
-    }
-
-    public Button getRandom() {
-        return random;
-    }
-
-    public Button getShuffle() {
-        return shuffle;
-    }
-
-    public Button getAdd() {
-        return add;
-    }
-
-    public Button getNext() {
-        return next;
-    }
-
-    public Button getPlay() {
-        return play;
-    }
-
-    public Button getPrevious() {
-        return previous;
-    }
-
     public TilePane getActionSButtons() {
         return actionSButtons;
-    }
-
-    public Button getList() {
-        return list;
-    }
-
-    public Button getMute() {
-        return mute;
     }
 
 }
