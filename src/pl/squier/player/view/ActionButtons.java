@@ -3,6 +3,7 @@ package pl.squier.player.view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -26,9 +27,9 @@ public class ActionButtons {
 
     private TilePane actionSButtons;
 
-    public ActionButtons(Stage primaryStage) {
+    public ActionButtons(Stage primaryStage, Label currentPlayingMedia, Label elapsingTime) {
 
-        createActionButtons();
+        createActionButtons(currentPlayingMedia, elapsingTime);
 
         createSmallButtons();
 
@@ -63,17 +64,17 @@ public class ActionButtons {
         list.getStyleClass().add("smallButton");
     }
 
-    private void createActionButtons() {
+    private void createActionButtons(Label currentPlayingMedia, Label elapsingTime) {
         actionLButtons = new TilePane();
         actionLButtons.setAlignment(Pos.CENTER);
         actionLButtons.setHgap(15);
         actionLButtons.setVgap(10);
-        actionLButtons.getChildren().addAll(createLargeButtons());
+        actionLButtons.getChildren().addAll(createLargeButtons(currentPlayingMedia, elapsingTime));
         actionLButtons.getChildren().addAll(createButtonsGroup(), add);
     }
 
 
-    private List<Button> createLargeButtons() {
+    private List<Button> createLargeButtons(Label currentPlayingMedia, Label elapsingTime) {
         Image icon;
         List<Button> buttons = new ArrayList<>();
         String pathToImages = "../res/images/";
@@ -81,17 +82,17 @@ public class ActionButtons {
         previous = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "previousButton.png"));
         previous.setGraphic(new ImageView(icon));
-        new PrevButtonController(previous);
+        new PrevButtonController(previous, currentPlayingMedia);
 
         play = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "playButton.png"));
         play.setGraphic(new ImageView(icon));
-        new PlayButtonController(play);
+        new PlayButtonController(play, currentPlayingMedia);
 
         next = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "nextButton.png"));
         next.setGraphic(new ImageView(icon));
-        new NextButtonController(next);
+        new NextButtonController(next, currentPlayingMedia);
 
         add = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "addButton.png"));

@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
  */
 public class Labels {
 
-    private Label elapsingTime, currentPlayingMedia;
+    private Label currentPlayingMedia;
 
     private HBox labelTile;
 
@@ -38,6 +38,16 @@ public class Labels {
 
     public HBox getLabelTile() {
         return labelTile;
+    }
+
+    public Label getElapsingTime() {
+        return elapsingTime;
+    }
+
+    private Label elapsingTime;
+
+    public Label getCurrentPlayingMedia() {
+        return currentPlayingMedia;
     }
 
 }

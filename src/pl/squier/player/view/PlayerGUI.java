@@ -87,10 +87,14 @@ public class PlayerGUI {
      */
     private void initComponents() {
         controlButtons = new ControlButtons(PRIMARY_STAGE).getButtons();
-        labels = new Labels().getLabelTile();
+
+        Labels l = new Labels();
+        labels = l.getLabelTile();
         innerPlaylist = new InnerPlaylist().getInnerPlaylist();
-        actionLButtons = new ActionButtons(PRIMARY_STAGE).getActionLButtons();
-        actionSButtons = new ActionButtons(PRIMARY_STAGE).getActionSButtons();
+
+        ActionButtons ab = new ActionButtons(PRIMARY_STAGE, l.getCurrentPlayingMedia(), l.getElapsingTime());
+        actionLButtons = ab.getActionLButtons();
+        actionSButtons = ab.getActionSButtons();
     }
 
     /**

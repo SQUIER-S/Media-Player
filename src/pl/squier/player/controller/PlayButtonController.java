@@ -1,10 +1,12 @@
 package pl.squier.player.controller;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import pl.squier.player.model.AudioPlayer;
+import pl.squier.player.model.Playlist;
 
 import static pl.squier.player.model.PlaylistIterator.getNumber;
 
@@ -14,13 +16,13 @@ import static pl.squier.player.model.PlaylistIterator.getNumber;
  */
 public class PlayButtonController {
 
-    public PlayButtonController(Button play) {
+    public PlayButtonController(Button play, Label currentPlayingMedia) {
 
-        play.setOnMouseClicked( e -> play(play));
+        play.setOnMouseClicked( e -> play(play, currentPlayingMedia));
 
     }
 
-    private void play(Button play) {
+    private void play(Button play, Label currentPlayingMedia) {
 
         if(AudioPlayer.getMediaPlayers().size() > 0) {
             MediaPlayer.Status playerStatus = AudioPlayer.getMediaPlayerStatus(getNumber());
@@ -31,6 +33,10 @@ public class PlayButtonController {
 
                 AudioPlayer.getMediaPlayerByInteger(getNumber()).play();
                 setImage(play, "../res/images/pauseButton.png");
+
+                if(currentPlayingMedia.getText().equals("")) {
+                    currentPlayingMedia.setText(Playlist.getFileByInteger(getNumber()).getName());
+                }
 
             } else if(playerStatus.equals(MediaPlayer.Status.PLAYING)) {
 
