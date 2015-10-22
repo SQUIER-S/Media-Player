@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pl.squier.player.miscellaneous.FileChooser;
 import pl.squier.player.view.PlayerGUI;
 
 /**
