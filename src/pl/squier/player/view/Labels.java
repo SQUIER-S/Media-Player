@@ -40,11 +40,11 @@ public class Labels {
         return labelTile;
     }
 
-    public Label getElapsingTime() {
+    public static Label getElapsingTime() {
         return elapsingTime;
     }
 
-    private Label elapsingTime;
+    private static Label elapsingTime;
 
     public Label getCurrentPlayingMedia() {
         return currentPlayingMedia;

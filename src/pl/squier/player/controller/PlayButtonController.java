@@ -5,9 +5,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
+import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;
 
+import static pl.squier.player.model.AudioPlayer.getMediaPlayerByInteger;
 import static pl.squier.player.model.PlaylistIterator.getNumber;
 
 /**
@@ -31,6 +33,7 @@ public class PlayButtonController {
                     || playerStatus.equals(MediaPlayer.Status.PAUSED)
                     || playerStatus.equals(MediaPlayer.Status.STOPPED)) {
 
+                MediaDuration.duration = getMediaPlayerByInteger(getNumber()).getMedia().getDuration();
                 AudioPlayer.getMediaPlayerByInteger(getNumber()).play();
                 setImage(play, "../res/images/pauseButton.png");
 

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pl.squier.player.controller.AudioPlayerController;
 import pl.squier.player.controller.refreshers.AudioPlayerRefresher;
 import pl.squier.player.model.Playlist;
 import pl.squier.player.view.PlayerGUI;
@@ -27,7 +26,6 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
         playerGUI.showStage();
 
         new AudioPlayerRefresher(Playlist.getPlaylist());
-        new AudioPlayerController();
 
     }
 

@@ -40,6 +40,8 @@ public class PlayerGUI {
     private HBox labels;
     private TextArea innerPlaylist;
 
+    private Labels l;
+
     public PlayerGUI(Stage primaryStage) {
 
         initStage(primaryStage);
@@ -88,7 +90,7 @@ public class PlayerGUI {
     private void initComponents() {
         controlButtons = new ControlButtons(PRIMARY_STAGE).getButtons();
 
-        Labels l = new Labels();
+        l = new Labels();
         labels = l.getLabelTile();
         innerPlaylist = new InnerPlaylist().getInnerPlaylist();
 
@@ -130,6 +132,13 @@ public class PlayerGUI {
      */
     public Scene getScene() {
         return scene;
+    }
+
+    /**
+     * @return
+     */
+    public Labels getL() {
+        return l;
     }
 
 }

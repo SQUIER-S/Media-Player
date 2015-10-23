@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import pl.squier.player.controller.refreshers.AudioPlayerRefresher;
 
 import java.util.List;
 import java.util.stream.Collectors;
