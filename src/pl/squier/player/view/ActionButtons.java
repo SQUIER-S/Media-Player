@@ -21,15 +21,35 @@ import java.util.List;
  */
 public class ActionButtons {
 
-    private Button previous, play, next, add, shuffle, random, equalizer, clearList, mute, list;
+    /*
+     * Large buttons
+     */
+    private Button previous;
+    private Button play;
+    private Button next;
+    private Button add;
+
+    /*
+     * Buttons group
+     */
+    private Button shuffle;
+    private Button random;
+    private Button equalizer;
+    private Button clearList;
+
+    /*
+     * Small buttons
+     */
+    private Button mute;
+    private Button list;
 
     private TilePane actionLButtons;
 
     private TilePane actionSButtons;
 
-    public ActionButtons(Stage primaryStage, Label currentPlayingMedia, Label elapsingTime) {
+    public ActionButtons() {
 
-        createActionButtons(currentPlayingMedia, elapsingTime);
+        createActionButtons();
 
         createSmallButtons();
 
@@ -38,7 +58,6 @@ public class ActionButtons {
                 list, equalizer,
                 clearList, mute, random);
 
-        new AddButtonController(add, primaryStage);
     }
 
     private void createSmallButtons() {
@@ -64,17 +83,16 @@ public class ActionButtons {
         list.getStyleClass().add("smallButton");
     }
 
-    private void createActionButtons(Label currentPlayingMedia, Label elapsingTime) {
+    private void createActionButtons() {
         actionLButtons = new TilePane();
         actionLButtons.setAlignment(Pos.CENTER);
         actionLButtons.setHgap(15);
         actionLButtons.setVgap(10);
-        actionLButtons.getChildren().addAll(createLargeButtons(currentPlayingMedia, elapsingTime));
+        actionLButtons.getChildren().addAll(createLargeButtons());
         actionLButtons.getChildren().addAll(createButtonsGroup(), add);
     }
 
-
-    private List<Button> createLargeButtons(Label currentPlayingMedia, Label elapsingTime) {
+    private List<Button> createLargeButtons() {
         Image icon;
         List<Button> buttons = new ArrayList<>();
         String pathToImages = "../res/images/";
@@ -82,17 +100,14 @@ public class ActionButtons {
         previous = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "previousButton.png"));
         previous.setGraphic(new ImageView(icon));
-        new PrevButtonController(previous, currentPlayingMedia);
 
         play = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "playButton.png"));
         play.setGraphic(new ImageView(icon));
-        new PlayButtonController(play, currentPlayingMedia);
 
         next = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "nextButton.png"));
         next.setGraphic(new ImageView(icon));
-        new NextButtonController(next, currentPlayingMedia);
 
         add = new Button();
         icon = new Image(getClass().getResourceAsStream(pathToImages + "addButton.png"));
@@ -104,6 +119,7 @@ public class ActionButtons {
 
         return buttons;
     }
+
 
     /*
      * group of buttons
@@ -148,12 +164,52 @@ public class ActionButtons {
         return v;
     }
 
-    public TilePane getActionLButtons() {
+    public TilePane getLargeButtons() {
         return actionLButtons;
     }
 
-    public TilePane getActionSButtons() {
+    public TilePane getSmallButtons() {
         return actionSButtons;
+    }
+
+    public Button getPrevious() {
+        return previous;
+    }
+
+    public Button getPlay() {
+        return play;
+    }
+
+    public Button getNext() {
+        return next;
+    }
+
+    public Button getAdd() {
+        return add;
+    }
+
+    public Button getShuffle() {
+        return shuffle;
+    }
+
+    public Button getRandom() {
+        return random;
+    }
+
+    public Button getEqualizer() {
+        return equalizer;
+    }
+
+    public Button getClearList() {
+        return clearList;
+    }
+
+    public Button getMute() {
+        return mute;
+    }
+
+    public Button getList() {
+        return list;
     }
 
 }

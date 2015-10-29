@@ -16,8 +16,7 @@ public class AudioPlayerRefresher {
     public AudioPlayerRefresher(ObservableList<File> playlist) {
 
         playlist.addListener((ListChangeListener<File>) c -> {
-            LoadPlaylistToAudioPlayer.load();
-            new AudioPlayerController();
+            //LoadPlaylistToAudioPlayer.load();
         });
 
     }

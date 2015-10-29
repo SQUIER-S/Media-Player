@@ -7,45 +7,42 @@ import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;
 
-import static pl.squier.player.model.AudioPlayer.getMediaPlayerByInteger;
-import static pl.squier.player.model.PlaylistIterator.getNumber;
-import static pl.squier.player.model.PlaylistIterator.setPrevious;
-
 /**
  * Created by SQUIER
  * on 2015-10-22.
  */
 public class PrevButtonController {
 
-    public PrevButtonController(Button prev, Label currentPlayingMedia) {
+    public PrevButtonController(Button prev, Label currentPlayingMedia,
+                                AudioPlayer audioPlayer, Playlist playlist) {
 
-        prev.setOnMouseClicked( e -> playPrev(currentPlayingMedia));
+        prev.setOnMouseClicked( e -> playPrev(currentPlayingMedia, audioPlayer, playlist));
 
     }
 
-    private void playPrev(Label currentPlayingMedia) {
+    private void playPrev(Label currentPlayingMedia, AudioPlayer audioPlayer, Playlist playlist) {
 
-        if(AudioPlayer.getMediaPlayerStatus(getNumber()).equals(MediaPlayer.Status.PLAYING)) {
+        if(audioPlayer.getMediaPlayerStatus(playlist.getcurrent()).equals(MediaPlayer.Status.PLAYING)) {
 
-            AudioPlayer.getMediaPlayerByInteger(getNumber()).stop();
-            setPrevious();
-            MediaDuration.duration = getMediaPlayerByInteger(getNumber()).getMedia().getDuration();
-            AudioPlayer.getMediaPlayerByInteger(getNumber()).play();
+            audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).stop();
+            playlist.setPrevious();
+            MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getMedia().getDuration();
+            audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).play();
 
-            currentPlayingMedia.setText(Playlist.getFileByInteger(getNumber()).getName());
+            currentPlayingMedia.setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
 
-        } else if(AudioPlayer.getMediaPlayerStatus(getNumber()).equals(MediaPlayer.Status.READY)) {
+        } else if(audioPlayer.getMediaPlayerStatus(playlist.getcurrent()).equals(MediaPlayer.Status.READY)) {
 
-            setPrevious();
-            MediaDuration.duration = getMediaPlayerByInteger(getNumber()).getMedia().getDuration();
-            currentPlayingMedia.setText(Playlist.getFileByInteger(getNumber()).getName());
+            playlist.setPrevious();
+            MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getMedia().getDuration();
+            currentPlayingMedia.setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
 
-        } else if(AudioPlayer.getMediaPlayerStatus(getNumber()).equals(MediaPlayer.Status.PAUSED)) {
+        } else if(audioPlayer.getMediaPlayerStatus(playlist.getcurrent()).equals(MediaPlayer.Status.PAUSED)) {
 
-            AudioPlayer.getMediaPlayerByInteger(getNumber()).stop();
-            setPrevious();
-            MediaDuration.duration = getMediaPlayerByInteger(getNumber()).getMedia().getDuration();
-            currentPlayingMedia.setText(Playlist.getFileByInteger(getNumber()).getName());
+            audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).stop();
+            playlist.setPrevious();
+            MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getMedia().getDuration();
+            currentPlayingMedia.setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
         }
 
     }

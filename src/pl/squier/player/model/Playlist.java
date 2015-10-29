@@ -13,19 +13,52 @@ import java.util.stream.Collectors;
  */
 public class Playlist {
 
-    private static ObservableList<File> observablePlaylist = FXCollections.observableArrayList();
+    private ObservableList<File> observablePlaylist;
+    private int current;
 
-    public static void addToPlaylist(List<File> importedFiles) {
+    public void addToPlaylist(List<File> importedFiles) {
 
         observablePlaylist.addAll(importedFiles.stream().collect(Collectors.toList()));
-
+        
     }
 
-    public static ObservableList<File> getPlaylist() {
+    public Playlist() {
+
+        observablePlaylist = FXCollections.observableArrayList();
+        current = 0;
+        
+    }
+    
+    public ObservableList<File> getPlaylist() {
         return observablePlaylist;
     }
 
-    public static File getFileByInteger(int index) {
+    public File getFileByInteger(int index) {
         return observablePlaylist.get(index);
     }
+
+    public void setNext() {
+        
+        if(current < observablePlaylist.size() - 1 ) {
+            current++;
+        } else if(current == observablePlaylist.size() - 1) {
+            current = 0;
+        }
+
+    }
+
+    public void setPrevious() {
+
+        if(current == 0) {
+            current = observablePlaylist.size() - 1;
+        } else if(current > 0) {
+            current--;
+        }
+
+    }
+
+    public int getcurrent() {
+        return current;
+    }
+    
 }

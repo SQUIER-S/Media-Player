@@ -14,6 +14,8 @@ public class Labels {
 
     private Label currentPlayingMedia;
 
+    private Label elapsingTime;
+
     private HBox labelTile;
 
     public Labels() {
@@ -40,11 +42,9 @@ public class Labels {
         return labelTile;
     }
 
-    public static Label getElapsingTime() {
+    public Label getElapsingTime() {
         return elapsingTime;
     }
-
-    private static Label elapsingTime;
 
     public Label getCurrentPlayingMedia() {
         return currentPlayingMedia;

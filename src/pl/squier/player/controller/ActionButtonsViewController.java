@@ -3,19 +3,25 @@ package pl.squier.player.controller;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by SQUIER
  * on 2015-10-16.
  */
 public class ActionButtonsViewController {
 
-    public ActionButtonsViewController(Button... args) {
+    public ActionButtonsViewController(Button... buttons) {
 
-        addHandlers(args);
+        addHandlers(buttons);
 
     }
 
     private void addHandlers(Button[] args) {
+
+        //args.stream().map(button -> setListeners()).collect(Collectors.toList());
+
         for(int i = 0; i < args.length; i++) {
             args[i].setOnMouseEntered(this::setOnMouseEntered);
             args[i].setOnMouseExited(this::setOnMouseExited);
@@ -25,6 +31,15 @@ public class ActionButtonsViewController {
                 args[i].setOnMouseReleased(this::setOnMouseEntered);
             }
         }
+    }
+
+    private Button setListeners(Button button) {
+
+        button.setOnMouseEntered(this::setOnMouseEntered);
+        button.setOnMouseExited(this::setOnMouseExited);
+        button.setOnMousePressed(this::setOnMousePressed);
+
+        return button;
     }
 
     private void setOnMousePressed(MouseEvent e) {

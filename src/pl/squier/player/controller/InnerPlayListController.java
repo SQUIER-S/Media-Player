@@ -11,11 +11,11 @@ import pl.squier.player.model.Playlist;
  */
 public class InnerPlaylistController {
 
-    public InnerPlaylistController(TextArea innerPlaylist) {
+    public InnerPlaylistController(TextArea innerPlaylist, Playlist playlist) {
 
         setOnDragOver(innerPlaylist);
         setOnDragExit(innerPlaylist);
-        setOnDragDropped(innerPlaylist);
+        setOnDragDropped(innerPlaylist, playlist);
     }
 
     private void setOnDragExit(TextArea innerPlaylist) {
@@ -53,7 +53,7 @@ public class InnerPlaylistController {
         });
     }
 
-    private void setOnDragDropped(TextArea innerPlaylist) {
+    private void setOnDragDropped(TextArea innerPlaylist, Playlist playlist) {
 
         innerPlaylist.setOnDragDropped(e -> {
             Dragboard db = e.getDragboard();
@@ -61,7 +61,7 @@ public class InnerPlaylistController {
 
             if(db.hasFiles()) {
                 success = true;
-                Playlist.addToPlaylist(db.getFiles());
+                playlist.addToPlaylist(db.getFiles());
             }
 
             e.setDropCompleted(success);

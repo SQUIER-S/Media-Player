@@ -14,18 +14,16 @@ import java.util.List;
  */
 public class AddButtonController {
 
-    private List<File> importedFiles;
-
-    public AddButtonController(Button add, Stage stage) {
-        add.setOnMouseClicked(e -> addFiles(stage));
+    public AddButtonController(Button add, Playlist playlist, Stage stage) {
+        add.setOnMouseClicked(e -> addFiles(playlist, stage));
     }
 
-    private void addFiles(Stage stage) {
+    private void addFiles(Playlist playlist, Stage stage) {
 
-        importedFiles = FileChooser.getChooser().showOpenMultipleDialog(stage);
+        List<File> importedFiles = FileChooser.getChooser().showOpenMultipleDialog(stage);
 
         if(importedFiles != null && !importedFiles.isEmpty()) {
-            Playlist.addToPlaylist(importedFiles);
+            playlist.addToPlaylist(importedFiles);
         }
     }
 }

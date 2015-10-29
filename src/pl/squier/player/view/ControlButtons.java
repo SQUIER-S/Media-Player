@@ -22,12 +22,11 @@ public class ControlButtons {
 
     private TilePane controlButtons;
 
-    public ControlButtons(Stage primaryStage) {
+    public ControlButtons() {
         initControlButtons();
 
         addControlButtons();
 
-        new ControlButtonsController(exit, minimize, primaryStage);
     }
 
     private void initControlButtons() {
@@ -56,7 +55,15 @@ public class ControlButtons {
         controlButtons.getChildren().addAll(minimize, exit);
     }
 
-    public TilePane getButtons() {
+    public Button getExit() {
+        return exit;
+    }
+
+    public Button getMinimize() {
+        return minimize;
+    }
+
+    public TilePane getControlButtons() {
         return controlButtons;
     }
 

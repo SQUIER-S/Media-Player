@@ -4,7 +4,8 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pl.squier.player.controller.refreshers.AudioPlayerRefresher;
+import pl.squier.player.controller.PlayerController;
+import pl.squier.player.model.PlayerModel;
 import pl.squier.player.model.Playlist;
 import pl.squier.player.view.PlayerGUI;
 
@@ -14,18 +15,22 @@ import pl.squier.player.view.PlayerGUI;
  */
 public class SQMediaPlayer extends Application implements EventHandler<MouseEvent> {
 
-    private PlayerGUI playerGUI;
-
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        playerGUI = new PlayerGUI(primaryStage);
-        playerGUI.showStage();
 
-        new AudioPlayerRefresher(Playlist.getPlaylist());
+        PlayerGUI playerGUI = new PlayerGUI(primaryStage);
+
+        PlayerModel playerModel = new PlayerModel();
+
+        new PlayerController(playerGUI.getActionButtons(), playerGUI.getControlButtons(),
+                playerGUI.getInnerPlaylist(), playerGUI.getLbls(), primaryStage,
+                playerModel.getPlaylist(), playerModel.getAudioPlayer());
+
+        playerGUI.showStage();
 
     }
 

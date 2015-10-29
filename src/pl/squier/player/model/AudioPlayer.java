@@ -14,25 +14,31 @@ import java.util.stream.Collectors;
  */
 public class AudioPlayer {
 
-    private static ObservableList<MediaPlayer> mediaPlayers = FXCollections.observableArrayList();
+    private ObservableList<MediaPlayer> mediaPlayers;
 
-    public static void addMediaToAudioPlayer(List<Media> medias) {
+    public void addMediaToAudioPlayer(List<Media> medias) {
 
         mediaPlayers.addAll(medias.stream().map(MediaPlayer::new).collect(Collectors.toList()));
 
     }
 
-    public static MediaPlayer getMediaPlayerByInteger(int index) {
+    public AudioPlayer() {
+
+        mediaPlayers = FXCollections.observableArrayList();
+
+    }
+
+    public MediaPlayer getMediaPlayerByInteger(int index) {
 
         return mediaPlayers.get(index);
 
     }
 
-    public static MediaPlayer.Status getMediaPlayerStatus(int index) {
+    public MediaPlayer.Status getMediaPlayerStatus(int index) {
         return mediaPlayers.get(index).getStatus();
     }
 
-    public static ObservableList<MediaPlayer> getMediaPlayers() {
+    public ObservableList<MediaPlayer> getMediaPlayers() {
         return mediaPlayers;
     }
 }

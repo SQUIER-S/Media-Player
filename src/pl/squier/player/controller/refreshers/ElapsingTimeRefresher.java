@@ -5,11 +5,7 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
-import pl.squier.player.model.PlaylistIterator;
-import pl.squier.player.view.Labels;
-
-import static pl.squier.player.model.AudioPlayer.getMediaPlayerByInteger;
-import static pl.squier.player.model.PlaylistIterator.*;
+import pl.squier.player.model.Playlist;
 
 /**
  * Created by SQUIER
@@ -17,14 +13,14 @@ import static pl.squier.player.model.PlaylistIterator.*;
  */
 public class ElapsingTimeRefresher {
 
-    public static void refreshLabel() {
+    public static void refreshLabel(Label elapsingTime, AudioPlayer audioPlayer, Playlist playlist) {
 
-        if (Labels.getElapsingTime() != null) {
+        if (elapsingTime != null) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    Duration currentTime = getMediaPlayerByInteger(getNumber()).getCurrentTime();
-                    Labels.getElapsingTime().setText(formatTime(currentTime, MediaDuration.duration));
+                    Duration currentTime = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getCurrentTime();
+                    elapsingTime.setText(formatTime(currentTime, MediaDuration.duration));
                 }
 
 

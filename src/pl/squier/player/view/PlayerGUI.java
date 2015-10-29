@@ -33,14 +33,19 @@ public class PlayerGUI {
      */
     private VBox vbox = new VBox(4);
 
+    private ActionButtons actionButtons;
+
+    private ControlButtons controlButtons;
+
+    private InnerPlaylist innerPlaylist;
+
     /*
      * Main window components
      */
-    private TilePane controlButtons, actionLButtons, actionSButtons;
+    private TilePane controlButs, largeButtons, smallButtons;
+    private TextArea playlist;
     private HBox labels;
-    private TextArea innerPlaylist;
-
-    private Labels l;
+    private Labels lbls;
 
     public PlayerGUI(Stage primaryStage) {
 
@@ -54,7 +59,7 @@ public class PlayerGUI {
 
         initScene();
 
-        initMovablePlayer();
+        initMovable();
 
         PRIMARY_STAGE.setScene(scene);
     }
@@ -62,7 +67,7 @@ public class PlayerGUI {
     /**
      * allows to move player on the screen by dragging it with mouse
      */
-    private void initMovablePlayer() {
+    private void initMovable() {
         new MovableWindowController(PRIMARY_STAGE, scene);
     }
 
@@ -70,17 +75,17 @@ public class PlayerGUI {
      * adds components groups to the app's body
      */
     private void addComponents() {
-        vbox.getChildren().addAll(controlButtons, labels, innerPlaylist, actionSButtons, actionLButtons);
+        vbox.getChildren().addAll(controlButs, labels, playlist, smallButtons, largeButtons);
     }
 
     /**
      * sets margins around each components group
      */
     private void setMargins() {
-        VBox.setMargin(controlButtons, new Insets(2, 2, 0, 0));
+        VBox.setMargin(controlButs, new Insets(2, 2, 0, 0));
         VBox.setMargin(labels, new Insets(0, 11, 0, 0));
-        VBox.setMargin(innerPlaylist, new Insets(10, 10, 1, 10));
-        VBox.setMargin(actionLButtons, new Insets(0, 10, 10, 10));
+        VBox.setMargin(playlist, new Insets(10, 10, 1, 10));
+        VBox.setMargin(largeButtons, new Insets(0, 10, 10, 10));
     }
 
     /**
@@ -88,15 +93,17 @@ public class PlayerGUI {
      * and action buttons (play/pause, add media etc..)
      */
     private void initComponents() {
-        controlButtons = new ControlButtons(PRIMARY_STAGE).getButtons();
+        controlButtons = new ControlButtons();
+        controlButs = controlButtons.getControlButtons();
 
-        l = new Labels();
-        labels = l.getLabelTile();
-        innerPlaylist = new InnerPlaylist().getInnerPlaylist();
+        lbls = new Labels();
+        labels = lbls.getLabelTile();
+        innerPlaylist = new InnerPlaylist();
+        playlist = innerPlaylist.getInnerPlaylist();
 
-        ActionButtons ab = new ActionButtons(PRIMARY_STAGE, l.getCurrentPlayingMedia(), l.getElapsingTime());
-        actionLButtons = ab.getActionLButtons();
-        actionSButtons = ab.getActionSButtons();
+        actionButtons = new ActionButtons();
+        largeButtons = actionButtons.getLargeButtons();
+        smallButtons = actionButtons.getSmallButtons();
     }
 
     /**
@@ -135,10 +142,34 @@ public class PlayerGUI {
     }
 
     /**
-     * @return
+     * @return labels
      */
-    public Labels getL() {
-        return l;
+    public Labels getLbls() {
+        return lbls;
+    }
+
+    /**
+     *
+     * @return action buttons objects
+     */
+    public ActionButtons getActionButtons() {
+        return actionButtons;
+    }
+
+    /**
+     *
+     * @return control buttons objects
+     */
+    public ControlButtons getControlButtons() {
+        return controlButtons;
+    }
+
+    /**
+     *
+     * @return inner playlist object
+     */
+    public InnerPlaylist getInnerPlaylist() {
+        return innerPlaylist;
     }
 
 }

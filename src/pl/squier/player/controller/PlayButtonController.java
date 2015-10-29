@@ -9,41 +9,39 @@ import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;
 
-import static pl.squier.player.model.AudioPlayer.getMediaPlayerByInteger;
-import static pl.squier.player.model.PlaylistIterator.getNumber;
-
 /**
  * Created by SQUIER
  * on 2015-10-22.
  */
 public class PlayButtonController {
 
-    public PlayButtonController(Button play, Label currentPlayingMedia) {
+    public PlayButtonController(Button play, Label currentPlayingMedia,
+                                AudioPlayer audioPlayer, Playlist playlist) {
 
-        play.setOnMouseClicked( e -> play(play, currentPlayingMedia));
+        play.setOnMouseClicked( e -> play(play, currentPlayingMedia, audioPlayer, playlist));
 
     }
 
-    private void play(Button play, Label currentPlayingMedia) {
+    private void play(Button play, Label currentPlayingMedia, AudioPlayer audioPlayer, Playlist playlist) {
 
-        if(AudioPlayer.getMediaPlayers().size() > 0) {
-            MediaPlayer.Status playerStatus = AudioPlayer.getMediaPlayerStatus(getNumber());
+        if(audioPlayer.getMediaPlayers().size() > 0) {
+            MediaPlayer.Status playerStatus = audioPlayer.getMediaPlayerStatus(playlist.getcurrent());
 
             if (playerStatus.equals(MediaPlayer.Status.READY)
                     || playerStatus.equals(MediaPlayer.Status.PAUSED)
                     || playerStatus.equals(MediaPlayer.Status.STOPPED)) {
 
-                MediaDuration.duration = getMediaPlayerByInteger(getNumber()).getMedia().getDuration();
-                AudioPlayer.getMediaPlayerByInteger(getNumber()).play();
+                MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getMedia().getDuration();
+                audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).play();
                 setImage(play, "../res/images/pauseButton.png");
 
                 if(currentPlayingMedia.getText().equals("")) {
-                    currentPlayingMedia.setText(Playlist.getFileByInteger(getNumber()).getName());
+                    currentPlayingMedia.setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
                 }
 
             } else if(playerStatus.equals(MediaPlayer.Status.PLAYING)) {
 
-                AudioPlayer.getMediaPlayerByInteger(getNumber()).pause();
+                audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).pause();
                 setImage(play, "../res/images/playButton.png");
             }
         }
