@@ -9,10 +9,9 @@ import pl.squier.player.model.Playlist;
  */
 public class LoadPlaylistToAudioPlayer {
 
-    public static void load() {
+    public static void load(AudioPlayer audioPlayer, Playlist playlist) {
 
-        MediaCreator mc = new MediaCreator(Playlist.getPlaylist());
-        AudioPlayer.addMediaToAudioPlayer(mc.getMedias());
+        audioPlayer.addMediaToAudioPlayer(MediaCreator.createMedias(playlist));
 
     }
 

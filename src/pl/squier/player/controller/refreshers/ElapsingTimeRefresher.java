@@ -2,10 +2,9 @@ package pl.squier.player.controller.refreshers;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import pl.squier.player.miscellaneous.MediaDuration;
-import pl.squier.player.model.AudioPlayer;
-import pl.squier.player.model.Playlist;
 
 /**
  * Created by SQUIER
@@ -13,13 +12,13 @@ import pl.squier.player.model.Playlist;
  */
 public class ElapsingTimeRefresher {
 
-    public static void refreshLabel(Label elapsingTime, AudioPlayer audioPlayer, Playlist playlist) {
+    public static void refreshLabel(Label elapsingTime, MediaPlayer mediaPlayer) {
 
         if (elapsingTime != null) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    Duration currentTime = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getCurrentTime();
+                    Duration currentTime = mediaPlayer.getCurrentTime();
                     elapsingTime.setText(formatTime(currentTime, MediaDuration.duration));
                 }
 

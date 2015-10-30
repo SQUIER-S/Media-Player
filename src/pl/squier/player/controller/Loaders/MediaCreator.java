@@ -1,6 +1,7 @@
 package pl.squier.player.controller.loaders;
 
 import javafx.scene.media.Media;
+import pl.squier.player.model.Playlist;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,21 +14,11 @@ import java.util.stream.Collectors;
  */
 public class MediaCreator {
 
-    private List<Media> medias;
+    private static List<Media> medias = new ArrayList<>();
 
-    public MediaCreator(List<File> files) {
+    public static List<Media> createMedias(Playlist playlist) {
 
-        medias = new ArrayList<>();
-
-        createMediaList(files);
-
-    }
-
-    private void createMediaList(List<File> files) {
-        medias.addAll(files.stream().map(file -> new Media(file.toURI().toString())).collect(Collectors.toList()));
-    }
-
-    public List<Media> getMedias() {
-        return medias;
+        return playlist.getPlaylist().stream()
+                .map(file -> new Media(file.toURI().toString())).collect(Collectors.toList());
     }
 }

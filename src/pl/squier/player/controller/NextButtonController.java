@@ -42,7 +42,8 @@ public class NextButtonController {
             MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getMedia().getDuration();
             audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).play();
 
-        } else if(audioPlayer.getMediaPlayerStatus(playlist.getcurrent()).equals(MediaPlayer.Status.PAUSED)) {
+        } else if(audioPlayer.getMediaPlayerStatus(playlist.getcurrent()).equals(MediaPlayer.Status.PAUSED) ||
+                audioPlayer.getMediaPlayerStatus(playlist.getcurrent()).equals(MediaPlayer.Status.STOPPED)) {
 
             audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).stop();
             playlist.setNext();

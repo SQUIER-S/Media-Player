@@ -1,6 +1,8 @@
 package pl.squier.player.controller;
 
 import javafx.stage.Stage;
+import pl.squier.player.controller.refreshers.AudioPlayerRefresher;
+import pl.squier.player.controller.refreshers.InnerPlaylistRefresher;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;
 import pl.squier.player.view.ActionButtons;
@@ -30,6 +32,8 @@ public class PlayerController {
 
         /*Possibility of adding files using drag and drop gesture*/
         new InnerPlaylistController(inp.getInnerPlaylist(), playlist);
+        /* Refreshing playlist content after adding files to playlist */
+        new InnerPlaylistRefresher(playlist.getPlaylist(), inp.getInnerPlaylist());
 
         /* Adds functionality to buttons
          * ADD  - adding files using file chooser
@@ -42,10 +46,9 @@ public class PlayerController {
         new PlayButtonController(ac.getPlay(), labels.getCurrentPlayingMedia(), audioPlayer, playlist);
         new PrevButtonController(ac.getPrevious(), labels.getCurrentPlayingMedia(), audioPlayer, playlist);
 
-        /* Adds player "hidden" functionality such as auto switching to next media at the end of current
-         * time counting, updating name of currently playing media
-         */
-        new AudioPlayerController(audioPlayer, playlist, labels);
+
+        /* creates new players for recently added files */
+        new AudioPlayerRefresher(audioPlayer, playlist, labels);
 
     }
 

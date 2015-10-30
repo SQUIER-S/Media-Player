@@ -1,6 +1,10 @@
 package pl.squier.player.controller;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import pl.squier.player.controller.refreshers.ElapsingTimeRefresher;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
@@ -15,7 +19,7 @@ import java.util.stream.Collectors;
  */
 public class AudioPlayerController {
 
-    public AudioPlayerController(AudioPlayer audioPlayer, Playlist playlist, Labels labels){
+    public AudioPlayerController(AudioPlayer audioPlayer, Playlist playlist, Labels labels) {
 
 
         audioPlayer.getMediaPlayers().stream()
@@ -26,20 +30,28 @@ public class AudioPlayerController {
 
     private MediaPlayer setListeners(MediaPlayer mediaPlayer, AudioPlayer audioPlayer, Playlist playlist, Labels labels) {
 
+//        InvalidationListener timer = observable -> ElapsingTimeRefresher
+//                .refreshLabel(labels.getElapsingTime(), audioPlayer, playlist);
+
         mediaPlayer.setOnEndOfMedia(() -> {
 
-             audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).stop();
-             playlist.setNext();
-             MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent())
-                     .getMedia().getDuration();
+            audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).stop();
+            //audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).currentTimeProperty().removeListener(timer);
 
-             labels.getCurrentPlayingMedia().setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
-             audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).play();
+            playlist.setNext();
+            MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent())
+                    .getMedia().getDuration();
 
-         });
+            labels.getCurrentPlayingMedia().setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
+            audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).play();
 
-        mediaPlayer.currentTimeProperty().addListener(observable -> ElapsingTimeRefresher
-                .refreshLabel(labels.getElapsingTime(), audioPlayer, playlist));
+        });
+
+        mediaPlayer.setOnPlaying(() -> mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+            ElapsingTimeRefresher
+                    .refreshLabel(labels.getElapsingTime(), mediaPlayer);
+            System.out.println(mediaPlayer.getCurrentTime().toSeconds());
+        }));
 
         return mediaPlayer;
     }

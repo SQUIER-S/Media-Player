@@ -41,4 +41,8 @@ public class AudioPlayer {
     public ObservableList<MediaPlayer> getMediaPlayers() {
         return mediaPlayers;
     }
+
+    public void setMediaPlayers(ObservableList<MediaPlayer> mediaPlayers) {
+        this.mediaPlayers = mediaPlayers;
+    }
 }
