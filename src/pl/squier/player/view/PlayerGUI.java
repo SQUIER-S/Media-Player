@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.squier.player.controller.MovableWindowController;
 
+import java.io.File;
+
 /**
  * Created by SQUIER
  * on 2015-10-16.
@@ -131,7 +133,9 @@ public class PlayerGUI {
      */
     private void initScene() {
         scene = new Scene(vbox, 450, 260);
-        scene.getStylesheets().add("pl/squier/player/res/stylesheets/style.css");
+
+        File cssFile = new File("resources/stylesheets/style.css");
+        scene.getStylesheets().add("file:///" + cssFile.getAbsolutePath().replace("\\", "/"));
     }
 
     /**

@@ -12,6 +12,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pl.squier.player.controller.*;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,9 +53,17 @@ public class ActionButtons {
 
     public ActionButtons() {
 
-        createActionButtons();
+        try {
+            createActionButtons();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        createSmallButtons();
+        try {
+            createSmallButtons();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         new ActionButtonsViewController(previous, play,
                 next, add, shuffle,
@@ -60,7 +72,7 @@ public class ActionButtons {
 
     }
 
-    private void createSmallButtons() {
+    private void createSmallButtons() throws FileNotFoundException {
         initSmallButtons();
         actionSButtons = new TilePane();
         actionSButtons.setAlignment(Pos.CENTER_LEFT);
@@ -68,22 +80,27 @@ public class ActionButtons {
         actionSButtons.getChildren().addAll(mute, list);
     }
 
-    private void initSmallButtons() {
+    private void initSmallButtons() throws FileNotFoundException {
         Image icon;
-        String pathToImages = "../res/images/";
+        String pathToImages = "resources/images/";
+        InputStream is;
+
+        is = new BufferedInputStream(new FileInputStream(pathToImages + "mute.png"));
 
         mute = new Button();
-        icon = new Image(getClass().getResourceAsStream(pathToImages + "mute.png"));
+        icon = new Image(is);
         mute.setGraphic(new ImageView(icon));
         mute.getStyleClass().add("smallButton");
 
+
+        is = new BufferedInputStream(new FileInputStream(pathToImages + "list.png"));
         list = new Button();
-        icon = new Image(getClass().getResourceAsStream(pathToImages + "list.png"));
+        icon = new Image(is);
         list.setGraphic(new ImageView(icon));
         list.getStyleClass().add("smallButton");
     }
 
-    private void createActionButtons() {
+    private void createActionButtons() throws FileNotFoundException {
         actionLButtons = new TilePane();
         actionLButtons.setAlignment(Pos.CENTER);
         actionLButtons.setHgap(15);
@@ -92,25 +109,31 @@ public class ActionButtons {
         actionLButtons.getChildren().addAll(createButtonsGroup(), add);
     }
 
-    private List<Button> createLargeButtons() {
+    private List<Button> createLargeButtons() throws FileNotFoundException {
         Image icon;
         List<Button> buttons = new ArrayList<>();
-        String pathToImages = "../res/images/";
+        String pathToImages = "resources/images/";
 
+        InputStream is;
+
+        is = new BufferedInputStream(new FileInputStream(pathToImages + "previousButton.png"));
         previous = new Button();
-        icon = new Image(getClass().getResourceAsStream(pathToImages + "previousButton.png"));
+        icon = new Image(is);
         previous.setGraphic(new ImageView(icon));
 
+        is = new BufferedInputStream(new FileInputStream(pathToImages + "playButton.png"));
         play = new Button();
-        icon = new Image(getClass().getResourceAsStream(pathToImages + "playButton.png"));
+        icon = new Image(is);
         play.setGraphic(new ImageView(icon));
 
+        is = new BufferedInputStream(new FileInputStream(pathToImages + "nextButton.png"));
         next = new Button();
-        icon = new Image(getClass().getResourceAsStream(pathToImages + "nextButton.png"));
+        icon = new Image(is);
         next.setGraphic(new ImageView(icon));
 
+        is = new BufferedInputStream(new FileInputStream(pathToImages + "addButton.png"));
         add = new Button();
-        icon = new Image(getClass().getResourceAsStream(pathToImages + "addButton.png"));
+        icon = new Image(is);
         add.setGraphic(new ImageView(icon));
 
         buttons.add(previous);
@@ -124,18 +147,21 @@ public class ActionButtons {
     /*
      * group of buttons
      */
-    private VBox createButtonsGroup() {
+    private VBox createButtonsGroup() throws FileNotFoundException {
         Image icon;
-        String pathToImages = "../res/images/";
+        String pathToImages = "resources/images/";
+
+        InputStream is;
 
         VBox v = new VBox(2);
         v.setSpacing(0);
         HBox h1 = new HBox();
         h1.setSpacing(0);
 
+        is = new BufferedInputStream(new FileInputStream(pathToImages + "shuffleButton.png"));
         shuffle = new Button();
         shuffle.getStyleClass().add("top_left");
-        icon = new Image(getClass().getResourceAsStream(pathToImages + "shuffleButton.png"));
+        icon = new Image(is);
         shuffle.setGraphic(new ImageView(icon));
         shuffle.setPadding(new Insets(7, 0, 0, 5));
 
