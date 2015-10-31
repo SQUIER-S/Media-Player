@@ -60,5 +60,9 @@ public class Playlist {
     public int getcurrent() {
         return current;
     }
-    
+
+    public File getCurrentFile() {
+        return observablePlaylist.get(current);
+    }
+
 }

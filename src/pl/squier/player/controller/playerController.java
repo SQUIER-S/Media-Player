@@ -1,7 +1,6 @@
 package pl.squier.player.controller;
 
 import javafx.stage.Stage;
-import pl.squier.player.controller.refreshers.AudioPlayerRefresher;
 import pl.squier.player.controller.refreshers.InnerPlaylistRefresher;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;
@@ -37,18 +36,12 @@ public class PlayerController {
 
         /* Adds functionality to buttons
          * ADD  - adding files using file chooser
-         * NEXT - switching to next song
          * PLAY - play/pause current media
-         * PREV - switching to previous position on playlist
+         * NEXT/PREV - switching to next song/switching to previous position on playlist
          */
         new AddButtonController(ac.getAdd(), playlist, stage);
-        new NextButtonController(ac.getNext(), labels.getCurrentPlayingMedia(), audioPlayer, playlist);
-        new PlayButtonController(ac.getPlay(), labels.getCurrentPlayingMedia(), audioPlayer, playlist);
-        new PrevButtonController(ac.getPrevious(), labels.getCurrentPlayingMedia(), audioPlayer, playlist);
-
-
-        /* creates new players for recently added files */
-        new AudioPlayerRefresher(audioPlayer, playlist, labels);
+        new PlayButtonController(ac.getPlay(), labels, audioPlayer, playlist);
+        new NextAndPrevButtonController(ac.getNext(), ac.getPrevious(), labels, audioPlayer, playlist);
 
     }
 

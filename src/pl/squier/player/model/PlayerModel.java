@@ -11,8 +11,8 @@ public class PlayerModel {
 
     public PlayerModel() {
 
-        audioPlayer = new AudioPlayer();
         playlist = new Playlist();
+        audioPlayer = new AudioPlayer(playlist);
 
     }
 

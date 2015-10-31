@@ -8,6 +8,7 @@ import javafx.scene.media.MediaPlayer;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;
+import pl.squier.player.view.Labels;
 
 /**
  * Created by SQUIER
@@ -15,35 +16,52 @@ import pl.squier.player.model.Playlist;
  */
 public class PlayButtonController {
 
-    public PlayButtonController(Button play, Label currentPlayingMedia,
+    public PlayButtonController(Button play, Labels labels,
                                 AudioPlayer audioPlayer, Playlist playlist) {
 
-        play.setOnMouseClicked( e -> play(play, currentPlayingMedia, audioPlayer, playlist));
+        play.setOnMouseClicked( e -> play(play, labels, audioPlayer, playlist));
 
     }
 
-    private void play(Button play, Label currentPlayingMedia, AudioPlayer audioPlayer, Playlist playlist) {
+    private void play(Button play, Labels labels, AudioPlayer audioPlayer, Playlist playlist) {
 
-        if(audioPlayer.getMediaPlayers().size() > 0) {
-            MediaPlayer.Status playerStatus = audioPlayer.getMediaPlayerStatus(playlist.getcurrent());
+        if(!playlist.getPlaylist().isEmpty()) {
 
-            if (playerStatus.equals(MediaPlayer.Status.READY)
-                    || playerStatus.equals(MediaPlayer.Status.PAUSED)
-                    || playerStatus.equals(MediaPlayer.Status.STOPPED)) {
+            if(audioPlayer.getCurrentPlayer() == null) {
+                audioPlayer.createNewCurrent();
+                new AudioPlayerListeners(audioPlayer, playlist, labels);
 
-                MediaDuration.duration = audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).getMedia().getDuration();
-                audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).play();
+                audioPlayer.getCurrentPlayer().setOnReady(() -> {
+
+                    MediaDuration.duration = audioPlayer.getCurrentPlayer().getMedia().getDuration();
+                    audioPlayer.getCurrentPlayer().play();
+                    setImage(play, "../res/images/pauseButton.png");
+
+                    labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
+
+                });
+
+            }
+
+
+            if (audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.READY)
+                    || audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PAUSED)
+                    || audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.STOPPED)) {
+
+                MediaDuration.duration = audioPlayer.getCurrentPlayer().getMedia().getDuration();
+                audioPlayer.getCurrentPlayer().play();
                 setImage(play, "../res/images/pauseButton.png");
 
-                if(currentPlayingMedia.getText().equals("")) {
-                    currentPlayingMedia.setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
-                }
+                labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
 
-            } else if(playerStatus.equals(MediaPlayer.Status.PLAYING)) {
+            } else if(audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PLAYING)) {
 
-                audioPlayer.getMediaPlayerByInteger(playlist.getcurrent()).pause();
+                audioPlayer.getCurrentPlayer().pause();
                 setImage(play, "../res/images/playButton.png");
             }
+
+
+
         }
     }
 

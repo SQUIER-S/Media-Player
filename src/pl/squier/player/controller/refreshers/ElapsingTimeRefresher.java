@@ -43,8 +43,7 @@ public class ElapsingTimeRefresher {
                                 elapsedMinutes, elapsedSeconds,
                                 durationMinutes, durationSeconds);
                     } else {
-                        return String.format("%02d:%02d",
-                                elapsedMinutes, elapsedSeconds);
+                        return "something fucked";
                     }
                 }
             });

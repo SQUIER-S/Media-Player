@@ -1,12 +1,8 @@
 package pl.squier.player.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import javafx.util.Duration;
 
 /**
  * Created by SQUIER
@@ -14,35 +10,29 @@ import java.util.stream.Collectors;
  */
 public class AudioPlayer {
 
-    private ObservableList<MediaPlayer> mediaPlayers;
+    private Playlist playlist;
+    private MediaPlayer currentPlayer = null;
 
-    public void addMediaToAudioPlayer(List<Media> medias) {
+    public AudioPlayer(Playlist playlist) {
 
-        mediaPlayers.addAll(medias.stream().map(MediaPlayer::new).collect(Collectors.toList()));
-
-    }
-
-    public AudioPlayer() {
-
-        mediaPlayers = FXCollections.observableArrayList();
+        this.playlist = playlist;
 
     }
 
-    public MediaPlayer getMediaPlayerByInteger(int index) {
-
-        return mediaPlayers.get(index);
+    public void createNewCurrent() {
+        currentPlayer = new MediaPlayer(new Media(playlist.getCurrentFile().toURI().toString()));
 
     }
 
-    public MediaPlayer.Status getMediaPlayerStatus(int index) {
-        return mediaPlayers.get(index).getStatus();
+    public MediaPlayer getCurrentPlayer() {
+        return currentPlayer;
     }
 
-    public ObservableList<MediaPlayer> getMediaPlayers() {
-        return mediaPlayers;
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
     }
 
-    public void setMediaPlayers(ObservableList<MediaPlayer> mediaPlayers) {
-        this.mediaPlayers = mediaPlayers;
+    public MediaPlayer.Status getMediaPlayerStatus() {
+        return currentPlayer.getStatus();
     }
 }
