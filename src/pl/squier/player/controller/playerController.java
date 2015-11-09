@@ -19,7 +19,7 @@ public class PlayerController {
     public PlayerController(ActionButtons ac, ControlButtons cb, InnerPlaylist inp, Labels labels, Stage stage,
                             Playlist playlist, AudioPlayer audioPlayer) {
 
-        /*Adds view-changing on mouse actions */
+        /*Adds default view-changing on mouse actions */
         new ActionButtonsViewController(ac.getPrevious(), ac.getPlay(), ac.getNext(),
                 ac.getAdd(), ac.getClearList(), ac.getEqualizer(), ac.getShuffle(),
                 ac.getList(), ac.getRandom(), ac.getMute());
