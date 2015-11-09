@@ -38,10 +38,12 @@ public class PlayerController {
          * ADD  - adding files using file chooser
          * PLAY - play/pause current media
          * NEXT/PREV - switching to next song/switching to previous position on playlist
+         * MUTE - turning volume off/on
          */
         new AddButtonController(ac.getAdd(), playlist, stage);
         new PlayButtonController(ac.getPlay(), labels, audioPlayer, playlist);
         new NextAndPrevButtonController(ac.getNext(), ac.getPrevious(), labels, audioPlayer, playlist);
+        new MuteButtonController(ac.getMute(), audioPlayer);
 
     }
 

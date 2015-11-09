@@ -3,6 +3,7 @@ package pl.squier.player.model;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import pl.squier.player.miscellaneous.PlayerMuted;
 
 /**
  * Created by SQUIER
@@ -21,6 +22,7 @@ public class AudioPlayer {
 
     public void createNewCurrent() {
         currentPlayer = new MediaPlayer(new Media(playlist.getCurrentFile().toURI().toString()));
+        currentPlayer.setMute(PlayerMuted.isMuted);
 
     }
 
