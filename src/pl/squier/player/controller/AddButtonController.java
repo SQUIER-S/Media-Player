@@ -22,7 +22,7 @@ public class AddButtonController {
 
         List<File> importedFiles = FileChooser.getChooser().showOpenMultipleDialog(stage);
 
-        if(importedFiles != null && !importedFiles.isEmpty()) {
+        if (importedFiles != null && !importedFiles.isEmpty()) {
             playlist.addToPlaylist(importedFiles);
         }
     }

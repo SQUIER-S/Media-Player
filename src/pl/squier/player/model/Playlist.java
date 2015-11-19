@@ -19,16 +19,16 @@ public class Playlist {
     public void addToPlaylist(List<File> importedFiles) {
 
         observablePlaylist.addAll(importedFiles.stream().collect(Collectors.toList()));
-        
+
     }
 
     public Playlist() {
 
         observablePlaylist = FXCollections.observableArrayList();
         current = 0;
-        
+
     }
-    
+
     public ObservableList<File> getPlaylist() {
         return observablePlaylist;
     }
@@ -38,10 +38,10 @@ public class Playlist {
     }
 
     public void setNext() {
-        
-        if(current < observablePlaylist.size() - 1 ) {
+
+        if (current < observablePlaylist.size() - 1) {
             current++;
-        } else if(current == observablePlaylist.size() - 1) {
+        } else if (current == observablePlaylist.size() - 1) {
             current = 0;
         }
 
@@ -49,9 +49,9 @@ public class Playlist {
 
     public void setPrevious() {
 
-        if(current == 0) {
+        if (current == 0) {
             current = observablePlaylist.size() - 1;
-        } else if(current > 0) {
+        } else if (current > 0) {
             current--;
         }
 

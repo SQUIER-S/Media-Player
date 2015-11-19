@@ -22,12 +22,12 @@ public class ActionButtonsViewController {
 
         //args.stream().map(button -> setListeners()).collect(Collectors.toList());
 
-        for(int i = 0; i < args.length; i++) {
+        for (int i = 0; i < args.length; i++) {
             args[i].setOnMouseEntered(this::setOnMouseEntered);
             args[i].setOnMouseExited(this::setOnMouseExited);
             args[i].setOnMousePressed(this::setOnMousePressed);
 
-            if(i < args.length - 2){
+            if (i < args.length - 2) {
                 args[i].setOnMouseReleased(this::setOnMouseEntered);
             }
         }
@@ -43,15 +43,15 @@ public class ActionButtonsViewController {
     }
 
     private void setOnMousePressed(MouseEvent e) {
-        ((Button)e.getSource()).setStyle("-fx-border-color: #5555ff; -fx-border-width: 3");
+        ((Button) e.getSource()).setStyle("-fx-border-color: #5555ff; -fx-border-width: 3");
     }
 
     private void setOnMouseExited(MouseEvent e) {
-        ((Button)e.getSource()).setStyle("-fx-border-color: #cccccc; -fx-border-width: 1");
+        ((Button) e.getSource()).setStyle("-fx-border-color: #cccccc; -fx-border-width: 1");
     }
 
     private void setOnMouseEntered(MouseEvent e) {
-        ((Button)e.getSource()).setStyle("-fx-border-color: #aaaaff; -fx-border-width: 2");
+        ((Button) e.getSource()).setStyle("-fx-border-color: #aaaaff; -fx-border-width: 2");
     }
 
 

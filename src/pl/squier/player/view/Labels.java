@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 /**
  * Created by SQUIER
  * on 2015-10-16.
- *
+ * <p>
  * App's labels
  */
 public class Labels {

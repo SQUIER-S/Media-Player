@@ -17,22 +17,22 @@ public class NextAndPrevButtonController {
     public NextAndPrevButtonController(Button next, Button prev, Labels labels,
                                        AudioPlayer audioPlayer, Playlist playlist) {
 
-        prev.setOnMouseClicked( e -> play("prev", labels, audioPlayer, playlist));
-        next.setOnMouseClicked( e -> play("next", labels, audioPlayer, playlist));
+        prev.setOnMouseClicked(e -> play("prev", labels, audioPlayer, playlist));
+        next.setOnMouseClicked(e -> play("next", labels, audioPlayer, playlist));
 
     }
 
     private void play(String way, Labels labels, AudioPlayer audioPlayer, Playlist playlist) {
 
-        if(!playlist.getPlaylist().isEmpty()) {
+        if (!playlist.getPlaylist().isEmpty()) {
 
 
-            if(!playlist.getPlaylist().isEmpty()) {
+            if (!playlist.getPlaylist().isEmpty()) {
 
                 MediaPlayer player;
                 MediaPlayer.Status status;
 
-                if(audioPlayer.getCurrentPlayer() != null) {
+                if (audioPlayer.getCurrentPlayer() != null) {
 
                     player = audioPlayer.getCurrentPlayer();
                     status = audioPlayer.getMediaPlayerStatus();
@@ -47,7 +47,7 @@ public class NextAndPrevButtonController {
                 final MediaPlayer finalPlayer = player;
                 player.setOnReady(() -> {
 
-                    if(status.equals(MediaPlayer.Status.PLAYING)) {
+                    if (status.equals(MediaPlayer.Status.PLAYING)) {
 
 
                         labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
@@ -73,7 +73,7 @@ public class NextAndPrevButtonController {
     private MediaPlayer prepareNewPlayer(String whichWay, Labels labels, AudioPlayer audioPlayer, Playlist playlist) {
         MediaPlayer player;
 
-        if(whichWay.equals("prev")) playlist.setPrevious();
+        if (whichWay.equals("prev")) playlist.setPrevious();
         else playlist.setNext();
 
         audioPlayer.createNewCurrent();
@@ -88,7 +88,7 @@ public class NextAndPrevButtonController {
         int minutes = duration / 60;
         int seconds = duration - (minutes * 60);
 
-        labels.getElapsingTime().setText(String.format("%02d:%02d/%02d:%02d", 0,0, minutes, seconds));
+        labels.getElapsingTime().setText(String.format("%02d:%02d/%02d:%02d", 0, 0, minutes, seconds));
     }
 
 }

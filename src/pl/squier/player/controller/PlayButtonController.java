@@ -19,15 +19,15 @@ public class PlayButtonController {
     public PlayButtonController(Button play, Labels labels,
                                 AudioPlayer audioPlayer, Playlist playlist) {
 
-        play.setOnMouseClicked( e -> play(play, labels, audioPlayer, playlist));
+        play.setOnMouseClicked(e -> play(play, labels, audioPlayer, playlist));
 
     }
 
     private void play(Button play, Labels labels, AudioPlayer audioPlayer, Playlist playlist) {
 
-        if(!playlist.getPlaylist().isEmpty()) {
+        if (!playlist.getPlaylist().isEmpty()) {
 
-            if(audioPlayer.getCurrentPlayer() == null) {
+            if (audioPlayer.getCurrentPlayer() == null) {
                 audioPlayer.createNewCurrent();
                 new AudioPlayerListeners(audioPlayer, playlist, labels);
 
@@ -54,12 +54,11 @@ public class PlayButtonController {
 
                 labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
 
-            } else if(audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PLAYING)) {
+            } else if (audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PLAYING)) {
 
                 audioPlayer.getCurrentPlayer().pause();
                 setImage(play, "../res/images/playButton.png");
             }
-
 
 
         }

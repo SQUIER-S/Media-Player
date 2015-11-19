@@ -29,7 +29,7 @@ public class InnerPlaylistController {
             boolean isAccepted = false;
 
 		/*
-		 * checking if files extensions are .mp3
+         * checking if files extensions are .mp3
 		 */
             for (int i = 0; i < e.getDragboard().getFiles().size(); i++) {
                 isAccepted = e.getDragboard().getFiles().get(i).toString().toLowerCase().endsWith(".mp3");
@@ -59,7 +59,7 @@ public class InnerPlaylistController {
             Dragboard db = e.getDragboard();
             boolean success = false;
 
-            if(db.hasFiles()) {
+            if (db.hasFiles()) {
                 success = true;
                 playlist.addToPlaylist(db.getFiles());
             }

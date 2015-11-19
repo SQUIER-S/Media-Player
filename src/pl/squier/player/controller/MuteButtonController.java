@@ -18,10 +18,10 @@ public class MuteButtonController {
 
     private void addListener(Button mute, AudioPlayer audioPlayer) {
         mute.setOnMouseClicked(e -> {
-            if(audioPlayer.getCurrentPlayer() != null && audioPlayer.getCurrentPlayer().isMute()) {
+            if (audioPlayer.getCurrentPlayer() != null && audioPlayer.getCurrentPlayer().isMute()) {
                 audioPlayer.getCurrentPlayer().setMute(false);
                 PlayerMuted.isMuted = false;
-            } else if(audioPlayer.getCurrentPlayer() != null && !audioPlayer.getCurrentPlayer().isMute()){
+            } else if (audioPlayer.getCurrentPlayer() != null && !audioPlayer.getCurrentPlayer().isMute()) {
                 audioPlayer.getCurrentPlayer().setMute(true);
                 PlayerMuted.isMuted = true;
 

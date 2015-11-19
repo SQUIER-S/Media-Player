@@ -10,7 +10,7 @@ import pl.squier.player.controller.ControlButtonsController;
 /**
  * Created by SQUIER
  * on 2015-10-16.
- *
+ * <p>
  * Exit and minimize buttons
  */
 public class ControlButtons {
@@ -40,7 +40,7 @@ public class ControlButtons {
         exit.setOnMouseExited(mouseEvent -> exit.setStyle("-fx-background-color: rgba(0, 0, 0, 0)"));
 
         /*
-		 * minimize button
+         * minimize button
 		 */
         minimize = new Button("---");
         minimize.getStyleClass().add("controlButtons");

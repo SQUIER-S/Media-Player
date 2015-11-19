@@ -25,7 +25,7 @@ public class MovableWindowController {
         });
 
         scene.setOnMouseDragged(mouseEvent -> {
-            if(anchor != null && previousLocation != null) {
+            if (anchor != null && previousLocation != null) {
                 stage.setX(previousLocation.getX() + mouseEvent.getScreenX() - anchor.getX());
                 stage.setY(previousLocation.getY() + mouseEvent.getScreenY() - anchor.getY());
             }

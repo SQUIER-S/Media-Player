@@ -5,5 +5,8 @@
 #Java class files
 *.class
 
+#External libs
+Libs/**
+
 #other
 out/**

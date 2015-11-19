@@ -15,7 +15,7 @@ import java.io.File;
 /**
  * Created by SQUIER
  * on 2015-10-16.
- *
+ * <p>
  * Graphic users interface
  */
 public class PlayerGUI {
@@ -119,7 +119,8 @@ public class PlayerGUI {
      * Initialize frame
      * sets parameters like style, resizability,
      * scene style and size
-     * @param primaryStage  -- App's frame
+     *
+     * @param primaryStage -- App's frame
      */
     private void initStage(Stage primaryStage) {
         PRIMARY_STAGE = primaryStage;
@@ -153,7 +154,6 @@ public class PlayerGUI {
     }
 
     /**
-     *
      * @return action buttons objects
      */
     public ActionButtons getActionButtons() {
@@ -161,7 +161,6 @@ public class PlayerGUI {
     }
 
     /**
-     *
      * @return control buttons objects
      */
     public ControlButtons getControlButtons() {
@@ -169,7 +168,6 @@ public class PlayerGUI {
     }
 
     /**
-     *
      * @return inner playlist object
      */
     public InnerPlaylist getInnerPlaylist() {

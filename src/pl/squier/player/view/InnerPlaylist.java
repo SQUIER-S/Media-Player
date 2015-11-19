@@ -5,7 +5,7 @@ import javafx.scene.control.TextArea;
 /**
  * Created by SQUIER
  * on 2015-10-16.
- *
+ * <p>
  * Inner uneditable playlist
  */
 public class InnerPlaylist {
