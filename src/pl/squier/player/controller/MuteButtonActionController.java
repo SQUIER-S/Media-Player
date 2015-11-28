@@ -20,11 +20,9 @@ public class MuteButtonActionController {
         mute.setOnMouseClicked(e -> {
             if (audioPlayer.getCurrentPlayer() != null && audioPlayer.getCurrentPlayer().isMute()) {
                 audioPlayer.getCurrentPlayer().setMute(false);
-                AudioPlayer.setMuteProperty(false);
                 MuteButtonViewController.setOnUnMute(mute);
             } else if (audioPlayer.getCurrentPlayer() != null && !audioPlayer.getCurrentPlayer().isMute()) {
                 audioPlayer.getCurrentPlayer().setMute(true);
-                AudioPlayer.setMuteProperty(true);
                 MuteButtonViewController.setOnMute(mute);
             }
         });
