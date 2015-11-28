@@ -57,7 +57,7 @@ public class Playlist {
 
     }
 
-    public int getcurrent() {
+    public int getCurrent() {
         return current;
     }
 

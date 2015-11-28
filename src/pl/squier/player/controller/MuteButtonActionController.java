@@ -1,16 +1,16 @@
 package pl.squier.player.controller;
 
 import javafx.scene.control.Button;
-import pl.squier.player.miscellaneous.PlayerMuted;
+import pl.squier.player.miscellaneous.PlayerMuteProperty;
 import pl.squier.player.model.AudioPlayer;
 
 /**
  * Created by SQUIER
  * on 2015-11-09.
  */
-public class MuteButtonController {
+public class MuteButtonActionController {
 
-    public MuteButtonController(Button mute, AudioPlayer audioPlayer) {
+    public MuteButtonActionController(Button mute, AudioPlayer audioPlayer) {
 
         addListener(mute, audioPlayer);
 
@@ -20,14 +20,12 @@ public class MuteButtonController {
         mute.setOnMouseClicked(e -> {
             if (audioPlayer.getCurrentPlayer() != null && audioPlayer.getCurrentPlayer().isMute()) {
                 audioPlayer.getCurrentPlayer().setMute(false);
-                PlayerMuted.isMuted = false;
+                AudioPlayer.setMuteProperty(false);
+                MuteButtonViewController.setOnUnMute(mute);
             } else if (audioPlayer.getCurrentPlayer() != null && !audioPlayer.getCurrentPlayer().isMute()) {
                 audioPlayer.getCurrentPlayer().setMute(true);
-                PlayerMuted.isMuted = true;
-
-                mute.setStyle("-fx-border-color: #5555ff; -fx-border-width: 3px;");
-                mute.setOnMouseEntered(null);
-                mute.setOnMouseExited(null);
+                AudioPlayer.setMuteProperty(true);
+                MuteButtonViewController.setOnMute(mute);
             }
         });
     }

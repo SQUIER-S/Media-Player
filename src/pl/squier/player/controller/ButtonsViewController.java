@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
  * Created by SQUIER
  * on 2015-10-16.
  */
-public class ActionButtonsViewController {
+public class ButtonsViewController {
 
-    public ActionButtonsViewController(Button... buttons) {
+    public ButtonsViewController(Button... buttons) {
 
         addHandlers(buttons);
 
@@ -20,16 +20,8 @@ public class ActionButtonsViewController {
 
     private void addHandlers(Button[] args) {
 
-        //args.stream().map(button -> setListeners()).collect(Collectors.toList());
-
-        for (int i = 0; i < args.length; i++) {
-            args[i].setOnMouseEntered(this::setOnMouseEntered);
-            args[i].setOnMouseExited(this::setOnMouseExited);
-            args[i].setOnMousePressed(this::setOnMousePressed);
-
-            if (i < args.length - 2) {
-                args[i].setOnMouseReleased(this::setOnMouseEntered);
-            }
+        for (Button arg : args) {
+            setListeners(arg);
         }
     }
 

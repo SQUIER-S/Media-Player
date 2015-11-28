@@ -36,7 +36,7 @@ public class AudioPlayerListeners {
             audioPlayer.createNewCurrent();
             new AudioPlayerListeners(audioPlayer, playlist, labels);
 
-            labels.getCurrentPlayingMedia().setText(playlist.getFileByInteger(playlist.getcurrent()).getName());
+            labels.getCurrentPlayingMedia().setText(playlist.getFileByInteger(playlist.getCurrent()).getName());
             audioPlayer.getCurrentPlayer().play();
 
         });

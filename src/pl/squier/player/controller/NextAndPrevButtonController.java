@@ -1,7 +1,6 @@
 package pl.squier.player.controller;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.media.MediaPlayer;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
@@ -22,59 +21,59 @@ public class NextAndPrevButtonController {
 
     }
 
-    private void play(String way, Labels labels, AudioPlayer audioPlayer, Playlist playlist) {
+    private void play(String way, Labels labels, AudioPlayer audioPlayer, Playlist playlist) throws IllegalArgumentException {
+
 
         if (!playlist.getPlaylist().isEmpty()) {
 
+            MediaPlayer player;
+            MediaPlayer.Status status;
 
-            if (!playlist.getPlaylist().isEmpty()) {
+            if (audioPlayer.getCurrentPlayer() != null) {
 
-                MediaPlayer player;
-                MediaPlayer.Status status;
+                player = audioPlayer.getCurrentPlayer();
+                status = audioPlayer.getMediaPlayerStatus();
 
-                if (audioPlayer.getCurrentPlayer() != null) {
-
-                    player = audioPlayer.getCurrentPlayer();
-                    status = audioPlayer.getMediaPlayerStatus();
-
-                    player.stop();
-                } else {
-                    status = MediaPlayer.Status.STOPPED;
-                }
-
-                player = prepareNewPlayer(way, labels, audioPlayer, playlist);
-
-                final MediaPlayer finalPlayer = player;
-                player.setOnReady(() -> {
-
-                    if (status.equals(MediaPlayer.Status.PLAYING)) {
-
-
-                        labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
-                        MediaDuration.duration = finalPlayer.getMedia().getDuration();
-                        finalPlayer.play();
-
-                    } else {
-                        labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
-                        MediaDuration.duration = finalPlayer.getMedia().getDuration();
-
-                        setTime(labels);
-                    }
-
-                });
-
+                player.stop();
+            } else {
+                status = MediaPlayer.Status.STOPPED;
             }
 
+            player = prepareNewPlayer(way, labels, audioPlayer, playlist);
+
+            final MediaPlayer finalPlayer = player;
+            player.setOnReady(() -> {
+
+                if (status.equals(MediaPlayer.Status.PLAYING)) {
+
+
+                    labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
+                    MediaDuration.duration = finalPlayer.getMedia().getDuration();
+                    finalPlayer.play();
+
+                } else {
+                    labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
+                    MediaDuration.duration = finalPlayer.getMedia().getDuration();
+
+                    setTime(labels);
+                }
+
+            });
+
         }
+
 
     }
 
 
-    private MediaPlayer prepareNewPlayer(String whichWay, Labels labels, AudioPlayer audioPlayer, Playlist playlist) {
+    private MediaPlayer prepareNewPlayer(String whichWay, Labels labels, AudioPlayer audioPlayer, Playlist playlist)
+            throws IllegalArgumentException {
+
         MediaPlayer player;
 
         if (whichWay.equals("prev")) playlist.setPrevious();
-        else playlist.setNext();
+        else if (whichWay.equals("next")) playlist.setNext();
+        else throw new IllegalArgumentException("Argument: " + whichWay + "; Allowed args: PREV or NEXT");
 
         audioPlayer.createNewCurrent();
         new AudioPlayerListeners(audioPlayer, playlist, labels);

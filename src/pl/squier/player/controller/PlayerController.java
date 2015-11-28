@@ -20,9 +20,9 @@ public class PlayerController {
                             Playlist playlist, AudioPlayer audioPlayer) {
 
         /*Adds view-changing on mouse actions */
-        new ActionButtonsViewController(ac.getPrevious(), ac.getPlay(), ac.getNext(),
+        new ButtonsViewController(ac.getPrevious(), ac.getPlay(), ac.getNext(),
                 ac.getAdd(), ac.getClearList(), ac.getEqualizer(), ac.getShuffle(),
-                ac.getList(), ac.getRandom(), ac.getMute());
+                ac.getList());
 
         /*EXIT - exiting program on click
          *MINIMIZE - minimizing program on click
@@ -43,7 +43,7 @@ public class PlayerController {
         new AddButtonController(ac.getAdd(), playlist, stage);
         new PlayButtonController(ac.getPlay(), labels, audioPlayer, playlist);
         new NextAndPrevButtonController(ac.getNext(), ac.getPrevious(), labels, audioPlayer, playlist);
-        new MuteButtonController(ac.getMute(), audioPlayer);
+        new MuteButtonActionController(ac.getMute(), audioPlayer);
 
     }
 
