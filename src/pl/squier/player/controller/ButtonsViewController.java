@@ -25,13 +25,12 @@ public class ButtonsViewController {
         }
     }
 
-    private Button setListeners(Button button) {
+    private void setListeners(Button button) {
 
         button.setOnMouseEntered(this::setOnMouseEntered);
         button.setOnMouseExited(this::setOnMouseExited);
         button.setOnMousePressed(this::setOnMousePressed);
 
-        return button;
     }
 
     private void setOnMousePressed(MouseEvent e) {

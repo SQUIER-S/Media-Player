@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -15,6 +16,15 @@ public class Playlist {
 
     private ObservableList<File> observablePlaylist;
     private int current;
+    private static boolean random = false;
+
+    public static boolean isRandom() {
+        return random;
+    }
+
+    public static void setRandomProperty(boolean randomProperty) {
+        Playlist.random = randomProperty;
+    }
 
     public void addToPlaylist(List<File> importedFiles) {
 
@@ -39,10 +49,15 @@ public class Playlist {
 
     public void setNext() {
 
-        if (current < observablePlaylist.size() - 1) {
-            current++;
-        } else if (current == observablePlaylist.size() - 1) {
-            current = 0;
+        if(!random) {
+            if (current < observablePlaylist.size() - 1) {
+                current++;
+            } else if (current == observablePlaylist.size() - 1) {
+                current = 0;
+            }
+        } else {
+            Random r = new Random();
+            current = r.nextInt(observablePlaylist.size());
         }
 
     }
@@ -65,4 +80,7 @@ public class Playlist {
         return observablePlaylist.get(current);
     }
 
+    public void clear() {
+        observablePlaylist.clear();
+    }
 }

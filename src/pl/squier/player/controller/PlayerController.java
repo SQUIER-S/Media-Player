@@ -39,12 +39,15 @@ public class PlayerController {
          * PLAY - play/pause current media
          * NEXT/PREV - switching to next song/switching to previous position on playlist
          * MUTE - turning volume off/on
+         * CLEAR - clears playlist
+         * RANDOM - sets random play
          */
         new AddButtonController(ac.getAdd(), playlist, stage);
         new PlayButtonController(ac.getPlay(), labels, audioPlayer, playlist);
         new NextAndPrevButtonController(ac.getNext(), ac.getPrevious(), labels, audioPlayer, playlist);
         new MuteButtonActionController(ac.getMute(), audioPlayer);
-
+        new ClearListController(ac.getClearList(), audioPlayer, labels, ac.getPlay());
+        new RandomController(ac.getRandom());
     }
 
 }

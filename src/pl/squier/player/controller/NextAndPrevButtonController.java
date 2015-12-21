@@ -71,9 +71,16 @@ public class NextAndPrevButtonController {
 
         MediaPlayer player;
 
-        if (whichWay.equals("prev")) playlist.setPrevious();
-        else if (whichWay.equals("next")) playlist.setNext();
-        else throw new IllegalArgumentException("Argument: " + whichWay + "; Allowed args: PREV or NEXT");
+        switch (whichWay) {
+            case "prev":
+                playlist.setPrevious();
+                break;
+            case "next":
+                playlist.setNext();
+                break;
+            default:
+                throw new IllegalArgumentException("Argument: " + whichWay + "; Allowed args: PREV or NEXT");
+        }
 
         audioPlayer.createNewCurrent();
         new AudioPlayerListeners(audioPlayer, playlist, labels);

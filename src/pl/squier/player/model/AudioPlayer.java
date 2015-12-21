@@ -45,4 +45,8 @@ public class AudioPlayer {
     public static void setMuteProperty(boolean muteProperty) {
         AudioPlayer.muteProperty = muteProperty;
     }
+
+    public Playlist getPlaylist() {
+        return playlist;
+    }
 }
