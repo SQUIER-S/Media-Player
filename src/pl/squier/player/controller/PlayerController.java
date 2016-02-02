@@ -43,8 +43,8 @@ public class PlayerController {
          * RANDOM - sets random play
          */
         new AddButtonController(ac.getAdd(), playlist, stage);
-        new PlayButtonController(ac.getPlay(), labels, audioPlayer, playlist);
-        new NextAndPrevButtonController(ac.getNext(), ac.getPrevious(), labels, audioPlayer, playlist);
+        new PlayButtonController(ac.getPlay(), labels, audioPlayer);
+        new NextAndPrevButtonController(ac.getNext(), ac.getPrevious(), labels, audioPlayer);
         new MuteButtonActionController(ac.getMute(), audioPlayer);
         new ClearListController(ac.getClearList(), audioPlayer, labels, ac.getPlay());
         new RandomController(ac.getRandom());

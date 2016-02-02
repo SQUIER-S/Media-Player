@@ -14,17 +14,17 @@ import pl.squier.player.view.Labels;
 public class NextAndPrevButtonController {
 
     public NextAndPrevButtonController(Button next, Button prev, Labels labels,
-                                       AudioPlayer audioPlayer, Playlist playlist) {
+                                       AudioPlayer audioPlayer) {
 
-        prev.setOnMouseClicked(e -> play("prev", labels, audioPlayer, playlist));
-        next.setOnMouseClicked(e -> play("next", labels, audioPlayer, playlist));
+        prev.setOnMouseClicked(e -> play("prev", labels, audioPlayer));
+        next.setOnMouseClicked(e -> play("next", labels, audioPlayer));
 
     }
 
-    private void play(String way, Labels labels, AudioPlayer audioPlayer, Playlist playlist) throws IllegalArgumentException {
+    private void play(String way, Labels labels, AudioPlayer audioPlayer) throws IllegalArgumentException {
 
 
-        if (!playlist.getPlaylist().isEmpty()) {
+        if (!audioPlayer.getPlaylist().isEmpty()) {
 
             MediaPlayer player;
             MediaPlayer.Status status;
@@ -39,20 +39,19 @@ public class NextAndPrevButtonController {
                 status = MediaPlayer.Status.STOPPED;
             }
 
-            player = prepareNewPlayer(way, labels, audioPlayer, playlist);
+            player = prepareNewPlayer(way, labels, audioPlayer);
 
             final MediaPlayer finalPlayer = player;
             player.setOnReady(() -> {
 
                 if (status.equals(MediaPlayer.Status.PLAYING)) {
 
-
-                    labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
+                    labels.getCurrentPlayingMedia().setText(audioPlayer.getCurrentMediaName());
                     MediaDuration.duration = finalPlayer.getMedia().getDuration();
                     finalPlayer.play();
 
                 } else {
-                    labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
+                    labels.getCurrentPlayingMedia().setText(audioPlayer.getCurrentMediaName());
                     MediaDuration.duration = finalPlayer.getMedia().getDuration();
 
                     setTime(labels);
@@ -66,24 +65,23 @@ public class NextAndPrevButtonController {
     }
 
 
-    private MediaPlayer prepareNewPlayer(String whichWay, Labels labels, AudioPlayer audioPlayer, Playlist playlist)
+    private MediaPlayer prepareNewPlayer(String whichWay, Labels labels, AudioPlayer audioPlayer)
             throws IllegalArgumentException {
 
         MediaPlayer player;
 
         switch (whichWay) {
             case "prev":
-                playlist.setPrevious();
+                audioPlayer.preparePrevious();
                 break;
             case "next":
-                playlist.setNext();
+                audioPlayer.prepareNext();
                 break;
             default:
                 throw new IllegalArgumentException("Argument: " + whichWay + "; Allowed args: PREV or NEXT");
         }
 
-        audioPlayer.createNewCurrent();
-        new AudioPlayerListeners(audioPlayer, playlist, labels);
+        new AudioPlayerListeners(audioPlayer, labels);
 
         player = audioPlayer.getCurrentPlayer();
         return player;

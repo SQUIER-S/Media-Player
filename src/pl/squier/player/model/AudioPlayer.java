@@ -2,6 +2,8 @@ package pl.squier.player.model;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.miscellaneous.PlayerMuteProperty;
 
 /**
@@ -48,5 +50,23 @@ public class AudioPlayer {
 
     public Playlist getPlaylist() {
         return playlist;
+    }
+
+    public void prepareNext() {
+        currentPlayer = new MediaPlayer(new Media(playlist.setNext().toURI().toString()));
+        currentPlayer.setMute(muteProperty);
+    }
+
+    public void preparePrevious() {
+        currentPlayer = new MediaPlayer(new Media(playlist.setPrevious().toURI().toString()));
+        currentPlayer.setMute(muteProperty);
+    }
+
+    public String getCurrentMediaName() {
+        return playlist.getCurrentFile().getName();
+    }
+
+    public Duration getCurrentMediaDuration() {
+        return currentPlayer.getMedia().getDuration();
     }
 }

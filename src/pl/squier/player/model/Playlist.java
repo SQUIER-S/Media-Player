@@ -18,20 +18,6 @@ public class Playlist {
     private int current;
     private static boolean random = false;
 
-    public static boolean isRandom() {
-        return random;
-    }
-
-    public static void setRandomProperty(boolean randomProperty) {
-        Playlist.random = randomProperty;
-    }
-
-    public void addToPlaylist(List<File> importedFiles) {
-
-        observablePlaylist.addAll(importedFiles.stream().collect(Collectors.toList()));
-
-    }
-
     public Playlist() {
 
         observablePlaylist = FXCollections.observableArrayList();
@@ -47,7 +33,7 @@ public class Playlist {
         return observablePlaylist.get(index);
     }
 
-    public void setNext() {
+    public File setNext() {
 
         if(!random) {
             if (current < observablePlaylist.size() - 1) {
@@ -60,9 +46,10 @@ public class Playlist {
             current = r.nextInt(observablePlaylist.size());
         }
 
+        return observablePlaylist.get(current);
     }
 
-    public void setPrevious() {
+    public File setPrevious() {
 
         if (current == 0) {
             current = observablePlaylist.size() - 1;
@@ -70,6 +57,7 @@ public class Playlist {
             current--;
         }
 
+        return observablePlaylist.get(current);
     }
 
     public int getCurrent() {
@@ -82,5 +70,23 @@ public class Playlist {
 
     public void clear() {
         observablePlaylist.clear();
+    }
+
+    public static boolean isRandom() {
+        return random;
+    }
+
+    public static void setRandomProperty(boolean randomProperty) {
+        Playlist.random = randomProperty;
+    }
+
+    public void addToPlaylist(List<File> importedFiles) {
+
+        observablePlaylist.addAll(importedFiles.stream().collect(Collectors.toList()));
+
+    }
+
+    public boolean isEmpty() {
+        return observablePlaylist.isEmpty();
     }
 }

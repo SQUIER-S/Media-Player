@@ -17,27 +17,27 @@ import pl.squier.player.view.Labels;
 public class PlayButtonController {
 
     public PlayButtonController(Button play, Labels labels,
-                                AudioPlayer audioPlayer, Playlist playlist) {
+                                AudioPlayer audioPlayer) {
 
-        play.setOnMouseClicked(e -> play(play, labels, audioPlayer, playlist));
+        play.setOnMouseClicked(e -> play(play, labels, audioPlayer));
 
     }
 
-    private void play(Button play, Labels labels, AudioPlayer audioPlayer, Playlist playlist) {
+    private void play(Button play, Labels labels, AudioPlayer audioPlayer) {
 
-        if (!playlist.getPlaylist().isEmpty()) {
+        if (!audioPlayer.getPlaylist().isEmpty()) {
 
             if (audioPlayer.getCurrentPlayer() == null) {
                 audioPlayer.createNewCurrent();
-                new AudioPlayerListeners(audioPlayer, playlist, labels);
+                new AudioPlayerListeners(audioPlayer, labels);
 
                 audioPlayer.getCurrentPlayer().setOnReady(() -> {
 
-                    MediaDuration.duration = audioPlayer.getCurrentPlayer().getMedia().getDuration();
+                    MediaDuration.duration = audioPlayer.getCurrentMediaDuration();
                     audioPlayer.getCurrentPlayer().play();
                     setImage(play, "../res/images/pauseButton.png");
 
-                    labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
+                    labels.getCurrentPlayingMedia().setText(audioPlayer.getCurrentMediaName());
 
                 });
 
@@ -48,11 +48,11 @@ public class PlayButtonController {
                     || audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PAUSED)
                     || audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.STOPPED)) {
 
-                MediaDuration.duration = audioPlayer.getCurrentPlayer().getMedia().getDuration();
+                MediaDuration.duration = audioPlayer.getCurrentMediaDuration();
                 audioPlayer.getCurrentPlayer().play();
                 setImage(play, "../res/images/pauseButton.png");
 
-                labels.getCurrentPlayingMedia().setText(playlist.getCurrentFile().getName());
+                labels.getCurrentPlayingMedia().setText(audioPlayer.getCurrentMediaName());
 
             } else if (audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PLAYING)) {
 

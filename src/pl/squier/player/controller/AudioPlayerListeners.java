@@ -13,37 +13,37 @@ import pl.squier.player.view.Labels;
  */
 public class AudioPlayerListeners {
 
-    public AudioPlayerListeners(AudioPlayer audioPlayer, Playlist playlist, Labels labels) {
+    public AudioPlayerListeners(AudioPlayer audioPlayer, Labels labels) {
 
 
-        setListeners(audioPlayer.getCurrentPlayer(), audioPlayer, playlist, labels);
+        setListeners(audioPlayer, labels);
 
     }
 
-    private void setListeners(MediaPlayer mediaPlayer, AudioPlayer audioPlayer, Playlist playlist, Labels labels) {
+    private void setListeners(AudioPlayer audioPlayer, Labels labels) {
+
+        MediaPlayer mediaPlayer = audioPlayer.getCurrentPlayer();
 
         mediaPlayer.setOnReady(() -> {
-            MediaDuration.duration = audioPlayer.getCurrentPlayer()
+            MediaDuration.duration = mediaPlayer
                     .getMedia().getDuration();
         });
 
         mediaPlayer.setOnEndOfMedia(() -> {
 
-            audioPlayer.getCurrentPlayer().stop();
+            mediaPlayer.stop();
 
-            playlist.setNext();
+            audioPlayer.prepareNext();
 
-            audioPlayer.createNewCurrent();
-            new AudioPlayerListeners(audioPlayer, playlist, labels);
+            new AudioPlayerListeners(audioPlayer, labels);
 
-            labels.getCurrentPlayingMedia().setText(playlist.getFileByInteger(playlist.getCurrent()).getName());
-            audioPlayer.getCurrentPlayer().play();
+            labels.getCurrentPlayingMedia().setText(audioPlayer.getCurrentMediaName());
+            audioPlayer.getCurrentPlayer().setOnReady(audioPlayer.getCurrentPlayer()::play);
 
         });
 
         mediaPlayer.setOnPlaying(() -> mediaPlayer.currentTimeProperty().addListener(observable -> {
-            ElapsingTimeRefresher
-                    .refreshLabel(labels.getElapsingTime(), mediaPlayer);
+            ElapsingTimeRefresher.refreshLabel(labels.getElapsingTime(), mediaPlayer);
         }));
 
     }
