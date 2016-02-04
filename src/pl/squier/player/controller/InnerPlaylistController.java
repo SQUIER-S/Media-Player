@@ -3,6 +3,7 @@ package pl.squier.player.controller;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;
 
 /**
@@ -11,11 +12,11 @@ import pl.squier.player.model.Playlist;
  */
 public class InnerPlaylistController {
 
-    public InnerPlaylistController(TextArea innerPlaylist, Playlist playlist) {
+    public InnerPlaylistController(TextArea innerPlaylist, AudioPlayer audioPlayer) {
 
         setOnDragOver(innerPlaylist);
         setOnDragExit(innerPlaylist);
-        setOnDragDropped(innerPlaylist, playlist);
+        setOnDragDropped(innerPlaylist, audioPlayer);
     }
 
     private void setOnDragExit(TextArea innerPlaylist) {
@@ -53,7 +54,7 @@ public class InnerPlaylistController {
         });
     }
 
-    private void setOnDragDropped(TextArea innerPlaylist, Playlist playlist) {
+    private void setOnDragDropped(TextArea innerPlaylist, AudioPlayer audioPlayer) {
 
         innerPlaylist.setOnDragDropped(e -> {
             Dragboard db = e.getDragboard();
@@ -61,7 +62,7 @@ public class InnerPlaylistController {
 
             if (db.hasFiles()) {
                 success = true;
-                playlist.addToPlaylist(db.getFiles());
+                audioPlayer.addToPlaylist(db.getFiles());
             }
 
             e.setDropCompleted(success);

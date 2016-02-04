@@ -9,8 +9,12 @@ import javafx.stage.Stage;
  */
 public class ControlButtonsController {
 
-    public ControlButtonsController(Button exit, Button minimize, Stage PRIMARY_STAGE) {
-        exit.setOnMouseClicked(e -> System.exit(0));
+    public ControlButtonsController(Button exit, Button minimize, Stage PRIMARY_STAGE, boolean main) {
+        if(main){
+            exit.setOnMouseClicked(e -> System.exit(0));
+        } else {
+            exit.setOnMouseClicked(e -> PRIMARY_STAGE.hide());
+        }
         minimize.setOnMouseClicked(e -> PRIMARY_STAGE.setIconified(true));
     }
 }

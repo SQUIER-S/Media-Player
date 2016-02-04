@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import pl.squier.player.controller.PlayerController;
 import pl.squier.player.model.PlayerModel;
 import pl.squier.player.model.Playlist;
+import pl.squier.player.view.OuterPlaylist;
 import pl.squier.player.view.PlayerGUI;
 
 /**
@@ -26,9 +27,7 @@ public class SQMediaPlayer extends Application implements EventHandler<MouseEven
 
         PlayerModel playerModel = new PlayerModel();
 
-        new PlayerController(playerGUI.getActionButtons(), playerGUI.getControlButtons(),
-                playerGUI.getInnerPlaylist(), playerGUI.getLbls(), primaryStage,
-                playerModel.getPlaylist(), playerModel.getAudioPlayer());
+        new PlayerController(playerGUI, playerModel);
 
         playerGUI.showStage();
 

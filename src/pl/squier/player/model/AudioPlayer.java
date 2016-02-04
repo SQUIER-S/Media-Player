@@ -6,6 +6,9 @@ import javafx.util.Duration;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.miscellaneous.PlayerMuteProperty;
 
+import java.io.File;
+import java.util.List;
+
 /**
  * Created by SQUIER
  * on 2015-10-22.
@@ -68,5 +71,9 @@ public class AudioPlayer {
 
     public Duration getCurrentMediaDuration() {
         return currentPlayer.getMedia().getDuration();
+    }
+
+    public void addToPlaylist(List<File> playlist) {
+        this.playlist.addToPlaylist(playlist);
     }
 }

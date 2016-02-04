@@ -48,8 +48,9 @@ public class PlayerGUI {
     private TextArea playlist;
     private HBox labels;
     private Labels lbls;
+    private OuterPlaylist outerPlaylist;
 
-    public PlayerGUI(Stage primaryStage) {
+    public PlayerGUI(Stage primaryStage) throws Exception {
 
         initStage(primaryStage);
 
@@ -64,6 +65,11 @@ public class PlayerGUI {
         initMovable();
 
         PRIMARY_STAGE.setScene(scene);
+        outerPlaylist = new OuterPlaylist();
+    }
+
+    public OuterPlaylist getOuterPlaylist() {
+        return outerPlaylist;
     }
 
     /**
@@ -174,4 +180,7 @@ public class PlayerGUI {
         return innerPlaylist;
     }
 
+    public Stage getPRIMARY_STAGE() {
+        return PRIMARY_STAGE;
+    }
 }

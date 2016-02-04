@@ -1,10 +1,9 @@
 package pl.squier.player.controller;
 
 import javafx.scene.media.MediaPlayer;
-import pl.squier.player.controller.refreshers.ElapsingTimeRefresher;
+import pl.squier.player.controller.refresh.ElapsingTimeRefresh;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
-import pl.squier.player.model.Playlist;
 import pl.squier.player.view.Labels;
 
 /**
@@ -43,7 +42,7 @@ public class AudioPlayerListeners {
         });
 
         mediaPlayer.setOnPlaying(() -> mediaPlayer.currentTimeProperty().addListener(observable -> {
-            ElapsingTimeRefresher.refreshLabel(labels.getElapsingTime(), mediaPlayer);
+            ElapsingTimeRefresh.refreshLabel(labels.getElapsingTime(), mediaPlayer);
         }));
 
     }

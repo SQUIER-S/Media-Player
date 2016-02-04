@@ -1,4 +1,4 @@
-package pl.squier.player.controller.refreshers;
+package pl.squier.player.controller.refresh;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -10,7 +10,7 @@ import pl.squier.player.miscellaneous.MediaDuration;
  * Created by SQUIER
  * on 2015-10-23.
  */
-public class ElapsingTimeRefresher {
+public class ElapsingTimeRefresh {
 
     public static void refreshLabel(Label elapsingTime, MediaPlayer mediaPlayer) {
 

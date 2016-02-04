@@ -1,4 +1,4 @@
-package pl.squier.player.controller.refreshers;
+package pl.squier.player.controller.refresh;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -10,9 +10,9 @@ import java.io.File;
  * Created by SQUIER
  * on 2015-10-22.
  */
-public class InnerPlaylistRefresher {
+public class InnerPlaylistRefresh {
 
-    public InnerPlaylistRefresher(ObservableList<File> playlist, TextArea innerPlaylist) {
+    public InnerPlaylistRefresh(ObservableList<File> playlist, TextArea innerPlaylist) {
 
         playlist.addListener((ListChangeListener<File>) change -> {
             innerPlaylist.setText("");

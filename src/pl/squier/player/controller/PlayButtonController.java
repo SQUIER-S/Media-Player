@@ -43,7 +43,6 @@ public class PlayButtonController {
 
             }
 
-
             if (audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.READY)
                     || audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PAUSED)
                     || audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.STOPPED)) {
