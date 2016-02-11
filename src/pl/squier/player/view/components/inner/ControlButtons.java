@@ -1,11 +1,9 @@
-package pl.squier.player.view;
+package pl.squier.player.view.components.inner;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
-import pl.squier.player.controller.ControlButtonsController;
 
 /**
  * Created by SQUIER

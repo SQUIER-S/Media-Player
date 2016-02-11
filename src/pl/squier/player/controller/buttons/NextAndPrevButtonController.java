@@ -1,7 +1,8 @@
-package pl.squier.player.controller;
+package pl.squier.player.controller.buttons;
 
 import javafx.scene.control.Button;
 import javafx.scene.media.MediaPlayer;
+import pl.squier.player.controller.AudioPlayerListeners;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.Playlist;

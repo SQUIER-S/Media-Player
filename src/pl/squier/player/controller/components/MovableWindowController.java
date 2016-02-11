@@ -1,4 +1,4 @@
-package pl.squier.player.controller;
+package pl.squier.player.controller.components;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;

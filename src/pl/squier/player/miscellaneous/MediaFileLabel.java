@@ -1,4 +1,4 @@
-package pl.squier.player.model;
+package pl.squier.player.miscellaneous;
 
 import javafx.scene.control.Label;
 

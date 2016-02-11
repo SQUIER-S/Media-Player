@@ -1,4 +1,4 @@
-package pl.squier.player.controller;
+package pl.squier.player.controller.components;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Dragboard;

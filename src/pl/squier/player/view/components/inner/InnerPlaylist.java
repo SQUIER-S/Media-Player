@@ -1,4 +1,4 @@
-package pl.squier.player.view;
+package pl.squier.player.view.components.inner;
 
 import javafx.scene.control.TextArea;
 

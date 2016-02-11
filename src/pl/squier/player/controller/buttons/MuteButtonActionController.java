@@ -1,7 +1,6 @@
-package pl.squier.player.controller;
+package pl.squier.player.controller.buttons;
 
 import javafx.scene.control.Button;
-import pl.squier.player.miscellaneous.PlayerMuteProperty;
 import pl.squier.player.model.AudioPlayer;
 
 /**

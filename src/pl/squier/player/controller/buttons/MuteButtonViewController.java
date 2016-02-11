@@ -1,22 +1,22 @@
-package pl.squier.player.controller;
+package pl.squier.player.controller.buttons;
 
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Created by SQUIER on 2015-12-21.
+ * Created by SQUIER on 2015-11-28.
  */
-public class RandomButtonViewController {
+public class MuteButtonViewController {
 
-    public static void setOnRandom(Button random) {
-        random.setOnMouseEntered(null);
-        random.setOnMouseExited(null);
+    public static void setOnUnMute(Button mute) {
+        mute.setOnMouseEntered(MuteButtonViewController::setOnMouseEntered);
+        mute.setOnMouseExited(MuteButtonViewController::setOnMouseExited);
+        mute.setOnMousePressed(MuteButtonViewController::setOnMousePressed);
     }
 
-    public static void setOnNormal(Button random) {
-        random.setOnMouseEntered(RandomButtonViewController::setOnMouseEntered);
-        random.setOnMouseExited(RandomButtonViewController::setOnMouseExited);
-        random.setOnMousePressed(RandomButtonViewController::setOnMousePressed);
+    public static void setOnMute(Button mute) {
+        mute.setOnMouseEntered(null);
+        mute.setOnMouseExited(null);
     }
 
     private static void setOnMousePressed(MouseEvent e) {

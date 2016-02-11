@@ -1,4 +1,4 @@
-package pl.squier.player.controller;
+package pl.squier.player.controller.buttons;
 
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;

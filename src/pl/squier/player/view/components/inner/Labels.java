@@ -1,4 +1,4 @@
-package pl.squier.player.view;
+package pl.squier.player.view.components.inner;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

@@ -1,16 +1,16 @@
-package pl.squier.player.view;
+package pl.squier.player.view.components.outer;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.squier.player.controller.MovableWindowController;
-import pl.squier.player.model.MediaFileLabel;
+import pl.squier.player.miscellaneous.MediaFileLabel;
+import pl.squier.player.view.components.inner.ControlButtons;
 
 import java.io.File;
 import java.util.ArrayList;
