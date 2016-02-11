@@ -1,15 +1,13 @@
 package pl.squier.player.controller.buttons;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import pl.squier.player.controller.AudioPlayerListeners;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
-import pl.squier.player.model.Playlist;
-import pl.squier.player.view.Labels;
+import pl.squier.player.view.components.inner.Labels;
 
 /**
  * Created by SQUIER
@@ -36,7 +34,7 @@ public class PlayButtonController {
 
                     MediaDuration.duration = audioPlayer.getCurrentMediaDuration();
                     audioPlayer.getCurrentPlayer().play();
-                    setImage(play, "../res/images/pauseButton.png");
+                    setImage(play, "../../res/images/pauseButton.png");
 
                     labels.getCurrentPlayingMedia().setText(audioPlayer.getCurrentMediaName());
 
@@ -50,14 +48,14 @@ public class PlayButtonController {
 
                 MediaDuration.duration = audioPlayer.getCurrentMediaDuration();
                 audioPlayer.getCurrentPlayer().play();
-                setImage(play, "../res/images/pauseButton.png");
+                setImage(play, "../../res/images/pauseButton.png");
 
                 labels.getCurrentPlayingMedia().setText(audioPlayer.getCurrentMediaName());
 
             } else if (audioPlayer.getMediaPlayerStatus().equals(MediaPlayer.Status.PLAYING)) {
 
                 audioPlayer.getCurrentPlayer().pause();
-                setImage(play, "../res/images/playButton.png");
+                setImage(play, "../../res/images/playButton.png");
             }
 
 

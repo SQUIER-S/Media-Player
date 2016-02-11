@@ -5,8 +5,7 @@ import javafx.scene.media.MediaPlayer;
 import pl.squier.player.controller.AudioPlayerListeners;
 import pl.squier.player.miscellaneous.MediaDuration;
 import pl.squier.player.model.AudioPlayer;
-import pl.squier.player.model.Playlist;
-import pl.squier.player.view.Labels;
+import pl.squier.player.view.components.inner.Labels;
 
 /**
  * Created by SQUIER

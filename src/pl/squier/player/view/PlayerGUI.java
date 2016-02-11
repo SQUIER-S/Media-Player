@@ -8,7 +8,12 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import pl.squier.player.controller.MovableWindowController;
+import pl.squier.player.controller.components.MovableWindowController;
+import pl.squier.player.view.components.inner.ActionButtons;
+import pl.squier.player.view.components.inner.ControlButtons;
+import pl.squier.player.view.components.inner.InnerPlaylist;
+import pl.squier.player.view.components.inner.Labels;
+import pl.squier.player.view.components.outer.OuterPlaylist;
 
 import java.io.File;
 

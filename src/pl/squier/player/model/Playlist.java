@@ -86,6 +86,10 @@ public class Playlist {
 
     }
 
+    public void setCurrent(int current) {
+        this.current = current;
+    }
+
     public boolean isEmpty() {
         return observablePlaylist.isEmpty();
     }

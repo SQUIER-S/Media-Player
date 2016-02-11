@@ -4,8 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import pl.squier.player.model.AudioPlayer;
-import pl.squier.player.model.Playlist;
-import pl.squier.player.view.Labels;
+import pl.squier.player.view.components.inner.Labels;
 
 /**
  * Created by SQUIER on 2015-12-21.

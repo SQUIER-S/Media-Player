@@ -6,8 +6,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pl.squier.player.controller.PlayerController;
 import pl.squier.player.model.PlayerModel;
-import pl.squier.player.model.Playlist;
-import pl.squier.player.view.OuterPlaylist;
 import pl.squier.player.view.PlayerGUI;
 
 /**

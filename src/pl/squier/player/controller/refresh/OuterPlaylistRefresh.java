@@ -1,11 +1,15 @@
 package pl.squier.player.controller.refresh;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
+import pl.squier.player.controller.AudioPlayerListeners;
+import pl.squier.player.controller.components.MediaLabelActionController;
+import pl.squier.player.controller.components.MediaLabelViewController;
 import pl.squier.player.miscellaneous.MediaListFiller;
-import pl.squier.player.model.MediaFileLabel;
-import pl.squier.player.view.OuterPlaylist;
+import pl.squier.player.miscellaneous.MediaFileLabel;
+import pl.squier.player.model.AudioPlayer;
+import pl.squier.player.view.components.inner.Labels;
+import pl.squier.player.view.components.outer.OuterPlaylist;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,12 +19,15 @@ import java.util.ArrayList;
  */
 public class OuterPlaylistRefresh {
 
-    public OuterPlaylistRefresh(ObservableList<File> playlist, OuterPlaylist outerPlaylist) {
+    public OuterPlaylistRefresh(AudioPlayer audioPlayer, OuterPlaylist outerPlaylist, Labels labels) {
 
-        playlist.addListener((ListChangeListener<File>) change -> {
+        audioPlayer.getPlaylist().getPlaylist().addListener((ListChangeListener<File>) change -> {
             outerPlaylist.setMediaFiles(new ArrayList<>());
-            for (int i = 0; i < playlist.size(); i++) {
-                outerPlaylist.getMediaFiles().add(new MediaFileLabel(new Label(playlist.get(i).getName()), i));
+            for (int i = 0; i < audioPlayer.getPlaylist().getPlaylist().size(); i++) {
+                MediaFileLabel label = new MediaFileLabel(new Label(audioPlayer.getPlaylist().getPlaylist().get(i).getName()), i);
+                outerPlaylist.getMediaFiles().add(label);
+                new MediaLabelViewController(label.getName());
+                new MediaLabelActionController(label, audioPlayer, labels);
             }
 
             MediaListFiller.fillMediaFileList(outerPlaylist.getMediaFiles(), outerPlaylist.getLoadedMedia());

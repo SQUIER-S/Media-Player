@@ -1,12 +1,17 @@
 package pl.squier.player.controller;
 
 import javafx.stage.Stage;
+import pl.squier.player.controller.buttons.*;
+import pl.squier.player.controller.components.InnerPlaylistController;
 import pl.squier.player.controller.refresh.InnerPlaylistRefresh;
 import pl.squier.player.controller.refresh.OuterPlaylistRefresh;
 import pl.squier.player.model.AudioPlayer;
 import pl.squier.player.model.PlayerModel;
-import pl.squier.player.model.Playlist;
 import pl.squier.player.view.*;
+import pl.squier.player.view.components.inner.ActionButtons;
+import pl.squier.player.view.components.inner.ControlButtons;
+import pl.squier.player.view.components.inner.InnerPlaylist;
+import pl.squier.player.view.components.inner.Labels;
 
 /**
  * Created by SQUIER
@@ -63,7 +68,7 @@ public class PlayerController {
         new ClearListController(ac.getClearList(), audioPlayer, labels, ac.getPlay());
         new RandomController(ac.getRandom());
         new ListButtonController(ac.getList(), playerGUI.getOuterPlaylist());
-        new OuterPlaylistRefresh(audioPlayer.getPlaylist().getPlaylist(), playerGUI.getOuterPlaylist());
+        new OuterPlaylistRefresh(audioPlayer, playerGUI.getOuterPlaylist(), labels);
     }
 
 }

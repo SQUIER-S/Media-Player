@@ -8,7 +8,7 @@ import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import pl.squier.player.controller.MovableWindowController;
+import pl.squier.player.controller.components.MovableWindowController;
 import pl.squier.player.miscellaneous.MediaFileLabel;
 import pl.squier.player.view.components.inner.ControlButtons;
 

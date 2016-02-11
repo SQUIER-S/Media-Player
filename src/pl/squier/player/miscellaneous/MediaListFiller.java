@@ -1,7 +1,6 @@
 package pl.squier.player.miscellaneous;
 
 import javafx.scene.layout.VBox;
-import pl.squier.player.model.MediaFileLabel;
 
 import java.util.ArrayList;
 
